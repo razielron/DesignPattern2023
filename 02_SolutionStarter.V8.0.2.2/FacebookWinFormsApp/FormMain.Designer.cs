@@ -30,16 +30,25 @@
         {
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
-            this.textBoxAppID = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listBoxAlbums = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.buttonFetchAlbums = new System.Windows.Forms.Button();
+            this.buttonLikePages = new System.Windows.Forms.Button();
+            this.listBoxPostComments = new System.Windows.Forms.ListBox();
+            this.listBoxPosts = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.buttonFetchAlbums = new System.Windows.Forms.Button();
+            this.listBoxLikePages = new System.Windows.Forms.ListBox();
+            this.listBoxAlbums = new System.Windows.Forms.ListBox();
+            this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonCheckIn = new System.Windows.Forms.Button();
+            this.buttonFetchGroups = new System.Windows.Forms.Button();
+            this.listBoxCheckIn = new System.Windows.Forms.ListBox();
+            this.listBoxGroups = new System.Windows.Forms.ListBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.listBox4 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -68,17 +77,6 @@
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(314, 17);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(559, 36);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "This is the AppID of \"Design Patterns App 2.4\". The grader will use it to test yo" +
-    "ur app.\r\nType here your own AppID to test it:";
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -92,13 +90,22 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.button5);
+            this.tabPage1.Controls.Add(this.listBox3);
+            this.tabPage1.Controls.Add(this.listBox4);
+            this.tabPage1.Controls.Add(this.buttonCheckIn);
+            this.tabPage1.Controls.Add(this.buttonFetchGroups);
+            this.tabPage1.Controls.Add(this.listBoxCheckIn);
+            this.tabPage1.Controls.Add(this.listBoxGroups);
+            this.tabPage1.Controls.Add(this.buttonLikePages);
+            this.tabPage1.Controls.Add(this.listBoxPostComments);
+            this.tabPage1.Controls.Add(this.listBoxPosts);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.buttonFetchAlbums);
-            this.tabPage1.Controls.Add(this.listBox2);
+            this.tabPage1.Controls.Add(this.listBoxLikePages);
             this.tabPage1.Controls.Add(this.listBoxAlbums);
             this.tabPage1.Controls.Add(this.pictureBoxProfile);
-            this.tabPage1.Controls.Add(this.textBoxAppID);
-            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.buttonLogout);
             this.tabPage1.Controls.Add(this.buttonLogin);
             this.tabPage1.Location = new System.Drawing.Point(4, 27);
@@ -109,6 +116,76 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // buttonLikePages
+            // 
+            this.buttonLikePages.Location = new System.Drawing.Point(44, 589);
+            this.buttonLikePages.Name = "buttonLikePages";
+            this.buttonLikePages.Size = new System.Drawing.Size(134, 23);
+            this.buttonLikePages.TabIndex = 62;
+            this.buttonLikePages.Text = "Fetch Like Pages";
+            this.buttonLikePages.UseVisualStyleBackColor = true;
+            this.buttonLikePages.Click += new System.EventHandler(this.buttonFetchLikePages_Click);
+            // 
+            // listBoxPostComments
+            // 
+            this.listBoxPostComments.FormattingEnabled = true;
+            this.listBoxPostComments.ItemHeight = 18;
+            this.listBoxPostComments.Location = new System.Drawing.Point(489, 143);
+            this.listBoxPostComments.Name = "listBoxPostComments";
+            this.listBoxPostComments.Size = new System.Drawing.Size(234, 130);
+            this.listBoxPostComments.TabIndex = 61;
+            this.listBoxPostComments.SelectedIndexChanged += new System.EventHandler(this.listBoxPostComments_SelectedIndexChanged);
+            // 
+            // listBoxPosts
+            // 
+            this.listBoxPosts.FormattingEnabled = true;
+            this.listBoxPosts.ItemHeight = 18;
+            this.listBoxPosts.Location = new System.Drawing.Point(244, 96);
+            this.listBoxPosts.Name = "listBoxPosts";
+            this.listBoxPosts.Size = new System.Drawing.Size(426, 148);
+            this.listBoxPosts.TabIndex = 60;
+            this.listBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(309, 241);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(174, 23);
+            this.button2.TabIndex = 59;
+            this.button2.Text = "Fetch Posts";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonFetchPosts_Click);
+            // 
+            // buttonFetchAlbums
+            // 
+            this.buttonFetchAlbums.Location = new System.Drawing.Point(44, 415);
+            this.buttonFetchAlbums.Name = "buttonFetchAlbums";
+            this.buttonFetchAlbums.Size = new System.Drawing.Size(134, 23);
+            this.buttonFetchAlbums.TabIndex = 58;
+            this.buttonFetchAlbums.Text = "Fetch Albums ";
+            this.buttonFetchAlbums.UseVisualStyleBackColor = true;
+            this.buttonFetchAlbums.Click += new System.EventHandler(this.buttonFetchAlbums_Click);
+            // 
+            // listBoxLikePages
+            // 
+            this.listBoxLikePages.FormattingEnabled = true;
+            this.listBoxLikePages.ItemHeight = 18;
+            this.listBoxLikePages.Location = new System.Drawing.Point(18, 462);
+            this.listBoxLikePages.Name = "listBoxLikePages";
+            this.listBoxLikePages.Size = new System.Drawing.Size(183, 130);
+            this.listBoxLikePages.TabIndex = 57;
+            this.listBoxLikePages.SelectedIndexChanged += new System.EventHandler(this.listBoxLikePages_SelectedIndexChanged);
+            // 
+            // listBoxAlbums
+            // 
+            this.listBoxAlbums.FormattingEnabled = true;
+            this.listBoxAlbums.ItemHeight = 18;
+            this.listBoxAlbums.Location = new System.Drawing.Point(18, 289);
+            this.listBoxAlbums.Name = "listBoxAlbums";
+            this.listBoxAlbums.Size = new System.Drawing.Size(183, 130);
+            this.listBoxAlbums.TabIndex = 56;
+            this.listBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.listBoxAlbums_SelectedIndexChanged);
+            // 
             // pictureBoxProfile
             // 
             this.pictureBoxProfile.Location = new System.Drawing.Point(18, 96);
@@ -117,15 +194,6 @@
             this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxProfile.TabIndex = 55;
             this.pictureBoxProfile.TabStop = false;
-            // 
-            // textBoxAppID
-            // 
-            this.textBoxAppID.Location = new System.Drawing.Point(317, 61);
-            this.textBoxAppID.Name = "textBoxAppID";
-            this.textBoxAppID.Size = new System.Drawing.Size(237, 24);
-            this.textBoxAppID.TabIndex = 54;
-            this.textBoxAppID.Text = "274259588558246";
-            this.textBoxAppID.TextChanged += new System.EventHandler(this.textBoxAppID_TextChanged);
             // 
             // tabPage2
             // 
@@ -137,44 +205,80 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // listBoxAlbums
+            // buttonCheckIn
             // 
-            this.listBoxAlbums.FormattingEnabled = true;
-            this.listBoxAlbums.ItemHeight = 18;
-            this.listBoxAlbums.Location = new System.Drawing.Point(18, 263);
-            this.listBoxAlbums.Name = "listBoxAlbums";
-            this.listBoxAlbums.Size = new System.Drawing.Size(183, 130);
-            this.listBoxAlbums.TabIndex = 56;
-            this.listBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.listBoxAlbums_SelectedIndexChanged);
+            this.buttonCheckIn.Location = new System.Drawing.Point(284, 589);
+            this.buttonCheckIn.Name = "buttonCheckIn";
+            this.buttonCheckIn.Size = new System.Drawing.Size(134, 23);
+            this.buttonCheckIn.TabIndex = 66;
+            this.buttonCheckIn.Text = "Fetch Check In";
+            this.buttonCheckIn.UseVisualStyleBackColor = true;
+            this.buttonCheckIn.Click += new System.EventHandler(this.buttonCheckIn_Click);
             // 
-            // listBox2
+            // buttonFetchGroups
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 18;
-            this.listBox2.Location = new System.Drawing.Point(18, 434);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(183, 130);
-            this.listBox2.TabIndex = 57;
-            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.buttonFetchGroups.Location = new System.Drawing.Point(284, 415);
+            this.buttonFetchGroups.Name = "buttonFetchGroups";
+            this.buttonFetchGroups.Size = new System.Drawing.Size(134, 23);
+            this.buttonFetchGroups.TabIndex = 65;
+            this.buttonFetchGroups.Text = "Fetch Groups ";
+            this.buttonFetchGroups.UseVisualStyleBackColor = true;
+            this.buttonFetchGroups.Click += new System.EventHandler(this.buttonFetchGroups_Click);
             // 
-            // buttonFetchAlbums
+            // listBoxCheckIn
             // 
-            this.buttonFetchAlbums.Location = new System.Drawing.Point(44, 399);
-            this.buttonFetchAlbums.Name = "buttonFetchAlbums";
-            this.buttonFetchAlbums.Size = new System.Drawing.Size(134, 23);
-            this.buttonFetchAlbums.TabIndex = 58;
-            this.buttonFetchAlbums.Text = "Fetch Albums ";
-            this.buttonFetchAlbums.UseVisualStyleBackColor = true;
-            this.buttonFetchAlbums.Click += new System.EventHandler(this.buttonFetchAlbums_Click);
+            this.listBoxCheckIn.FormattingEnabled = true;
+            this.listBoxCheckIn.ItemHeight = 18;
+            this.listBoxCheckIn.Location = new System.Drawing.Point(258, 462);
+            this.listBoxCheckIn.Name = "listBoxCheckIn";
+            this.listBoxCheckIn.Size = new System.Drawing.Size(183, 130);
+            this.listBoxCheckIn.TabIndex = 64;
             // 
-            // button2
+            // listBoxGroups
             // 
-            this.button2.Location = new System.Drawing.Point(64, 570);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 59;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.listBoxGroups.FormattingEnabled = true;
+            this.listBoxGroups.ItemHeight = 18;
+            this.listBoxGroups.Location = new System.Drawing.Point(258, 289);
+            this.listBoxGroups.Name = "listBoxGroups";
+            this.listBoxGroups.Size = new System.Drawing.Size(183, 130);
+            this.listBoxGroups.TabIndex = 63;
+            this.listBoxGroups.SelectedIndexChanged += new System.EventHandler(this.listBoxGroups_SelectedIndexChanged);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(515, 589);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(134, 23);
+            this.button4.TabIndex = 70;
+            this.button4.Text = "Fetch Like Pages";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(515, 415);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(134, 23);
+            this.button5.TabIndex = 69;
+            this.button5.Text = "Fetch Albums ";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 18;
+            this.listBox3.Location = new System.Drawing.Point(489, 462);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(183, 130);
+            this.listBox3.TabIndex = 68;
+            // 
+            // listBox4
+            // 
+            this.listBox4.FormattingEnabled = true;
+            this.listBox4.ItemHeight = 18;
+            this.listBox4.Location = new System.Drawing.Point(489, 289);
+            this.listBox4.Name = "listBox4";
+            this.listBox4.Size = new System.Drawing.Size(183, 130);
+            this.listBox4.TabIndex = 67;
             // 
             // FormMain
             // 
@@ -189,7 +293,6 @@
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.ResumeLayout(false);
 
@@ -199,16 +302,25 @@
 
 		private System.Windows.Forms.Button buttonLogin;
 		private System.Windows.Forms.Button buttonLogout;
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBoxAppID;
         private System.Windows.Forms.PictureBox pictureBoxProfile;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxLikePages;
         private System.Windows.Forms.ListBox listBoxAlbums;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonFetchAlbums;
+        private System.Windows.Forms.ListBox listBoxPosts;
+        private System.Windows.Forms.ListBox listBoxPostComments;
+        private System.Windows.Forms.Button buttonLikePages;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.Button buttonCheckIn;
+        private System.Windows.Forms.Button buttonFetchGroups;
+        private System.Windows.Forms.ListBox listBoxCheckIn;
+        private System.Windows.Forms.ListBox listBoxGroups;
     }
 }
 
