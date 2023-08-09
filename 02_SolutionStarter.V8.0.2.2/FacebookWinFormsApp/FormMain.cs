@@ -204,7 +204,7 @@ namespace BasicFacebookFeatures
         private void buttonCheckIn_Click(object sender, EventArgs e)
         {
             listBoxCheckIn.Items.Clear();
-            listBoxCheckIn.DisplayMember = "Name";
+            listBoxCheckIn.DisplayMember = "Message";
             try
             {
                 foreach (Checkin checkin in m_TheLoggedInUser.Checkins)
