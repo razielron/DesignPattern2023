@@ -59,12 +59,26 @@ namespace BasicFacebookFeatures
             
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
-                buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
+                buttonLogin.Text = $"Logged in as {m_TheLoggedInUser.Name}";
                 buttonLogin.BackColor = Color.LightGreen;
-                pictureBoxProfile.ImageLocation = m_LoginResult.LoggedInUser.PictureNormalURL;
+                pictureBoxProfile.ImageLocation = m_TheLoggedInUser.PictureNormalURL;
+                updateDetailsAboutUser(); 
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
             }
+        }
+
+        private void updateDetailsAboutUser()
+        {
+            labelAbout.Text = string.Format("{0} {1}{2}Email: {3}{4}Birth Date: {5}{6}Address: {7}", 
+                m_TheLoggedInUser.FirstName, 
+                m_TheLoggedInUser.LastName,
+                Environment.NewLine,
+                m_TheLoggedInUser.Email,
+                Environment.NewLine,
+                m_TheLoggedInUser.Birthday,
+                Environment.NewLine,
+                m_TheLoggedInUser.Location);
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -155,7 +169,7 @@ namespace BasicFacebookFeatures
         {
             listBoxLikePages.Items.Clear();
             listBoxLikePages.DisplayMember = "Name";
-
+            
             try
             {
                 foreach (Page page in m_TheLoggedInUser.LikedPages)
@@ -176,7 +190,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void buttonFetchGroups_Click(object sender, EventArgs e)
@@ -220,6 +234,39 @@ namespace BasicFacebookFeatures
             if (listBoxCheckIn.Items.Count == 0)
             {
                 MessageBox.Show("No checkins to retrieve :(");
+            }
+        }
+
+        private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonFetchLikes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonFetchPhotosTaggedIn_Click(object sender, EventArgs e)
+        {
+            listBoxPhotosTaggedIn.Items.Clear();
+            listBoxPhotosTaggedIn.DisplayMember = "Name";
+
+            try
+            {
+                foreach (Photo photo in m_TheLoggedInUser.PhotosTaggedIn)
+                {
+                    listBoxPhotosTaggedIn.Items.Add(photo);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (listBoxPhotosTaggedIn.Items.Count == 0)
+            {
+                MessageBox.Show("No photos tagged in to retrieve :(");
             }
         }
     }
