@@ -70,7 +70,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             FacebookService.LogoutWithUI();
@@ -83,15 +82,26 @@ namespace BasicFacebookFeatures
 
         private void listBoxPictures_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Photo photo = m_TheLoggedInUser.Albums[listBoxAlbums.SelectedIndex].Photos[listBoxPictures.SelectedIndex];
+            Photo photo = (Photo)listBoxPictures.SelectedItem;
             pictureBoxPhotos.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxPhotos.ImageLocation = photo.PictureNormalURL;
+            pictureBoxPhotos.ImageLocation = photo?.PictureNormalURL;
         }
         
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Album album = m_TheLoggedInUser.Albums[listBoxAlbums.SelectedIndex];
-            listBoxPictures.DataSource = album.Photos;
+            ListBoxDataModel selectedAlbum = (ListBoxDataModel)listBoxAlbums.SelectedItem;
+
+            try
+            {
+                Album album = m_TheLoggedInUser.Albums
+                    .Where(x => x.Id == selectedAlbum?.Id)
+                    .FirstOrDefault();
+                listBoxPictures.DataSource = album?.Photos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
@@ -101,9 +111,20 @@ namespace BasicFacebookFeatures
        
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Post post = m_TheLoggedInUser.Posts[listBoxPosts.SelectedIndex];
-            listBoxPostComments.DisplayMember = "Message";
-            listBoxPostComments.DataSource = post.Comments;
+            ListBoxDataModel selectedPost = (ListBoxDataModel)listBoxPosts.SelectedItem;
+
+            try
+            {
+                Post post = m_TheLoggedInUser.Posts
+                    .Where(x => x.Id == selectedPost.Id)
+                    .FirstOrDefault();
+                listBoxPostComments.DisplayMember = "Message";
+                listBoxPostComments.DataSource = post.Comments;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
@@ -123,7 +144,7 @@ namespace BasicFacebookFeatures
 
         private void buttonFetchLikePages_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchLikePagesAndDisplayToListBox(listBoxLikePages);
+            m_UiControler.FetchLikedPagesAndDisplayToListBox(listBoxLikePages);
         }
 
         private void buttonFetchGroups_Click(object sender, EventArgs e)
@@ -154,6 +175,31 @@ namespace BasicFacebookFeatures
         private void listBoxPhotosTaggedIn_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBoxGroupSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayGroupsToListBox(listBoxPosts, textBoxPostsSearch.Text);
+        }
+
+        private void textBoxPostsSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayPostsToListBox(listBoxPosts, textBoxPostsSearch.Text);
+        }
+
+        private void textBoxPhotosTaggenInSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayPhotosTaggedInToListBox(listBoxPhotosTaggedIn, textBoxPhotosTaggenInSearch.Text);
+        }
+
+        private void textBoxCheckInSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayCheckInToListBox(listBoxCheckIn, textBoxCheckInSearch.Text);
+        }
+
+        private void textBoxLikedPagesSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayLikedPagesToListBox(listBoxLikePages, textBoxLikedPagesSearch.Text);
         }
     }
 }
