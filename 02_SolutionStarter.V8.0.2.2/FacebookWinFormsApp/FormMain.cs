@@ -91,37 +91,36 @@ namespace BasicFacebookFeatures
             buttonLogout.Enabled = false;
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxPictures_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Photo photo = m_TheLoggedInUser.Albums[listBoxAlbums.SelectedIndex].Photos[listBoxPictures.SelectedIndex];
+            pictureBoxPhotos.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxPhotos.ImageLocation = photo.PictureNormalURL;
         }
-
+        
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Album album = m_TheLoggedInUser.Albums[listBoxAlbums.SelectedIndex];
+            listBoxPictures.DataSource = album.Photos;
         }
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
         {
+            listBoxAlbums.Items.Clear();
             listBoxAlbums.DisplayMember = "Name";
-            listBoxAlbums.DataSource = m_TheLoggedInUser.Albums;
+            foreach (Album album in m_TheLoggedInUser.Albums)
+            {
+                listBoxAlbums.Items.Add(album);
+            }
+
+            if (listBoxAlbums.Items.Count == 0)
+            {
+                MessageBox.Show("No Albums to retrieve :(");
+            }
         }
 
-        private void textBoxAppID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
+        
+       
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
             Post post = m_TheLoggedInUser.Posts[listBoxPosts.SelectedIndex];
@@ -169,7 +168,7 @@ namespace BasicFacebookFeatures
         {
             listBoxLikePages.Items.Clear();
             listBoxLikePages.DisplayMember = "Name";
-            
+
             try
             {
                 foreach (Page page in m_TheLoggedInUser.LikedPages)
@@ -218,12 +217,15 @@ namespace BasicFacebookFeatures
         private void buttonCheckIn_Click(object sender, EventArgs e)
         {
             listBoxCheckIn.Items.Clear();
-            listBoxCheckIn.DisplayMember = "Message";
+            listBoxCheckIn.DisplayMember = "Name";
             try
             {
                 foreach (Checkin checkin in m_TheLoggedInUser.Checkins)
                 {
-                    listBoxCheckIn.Items.Add(checkin);
+                    if(checkin.Place != null)
+                    {
+                        listBoxCheckIn.Items.Add(checkin.Place);
+                    }
                 }
             }
             catch (Exception ex)
@@ -269,5 +271,6 @@ namespace BasicFacebookFeatures
                 MessageBox.Show("No photos tagged in to retrieve :(");
             }
         }
+
     }
 }
