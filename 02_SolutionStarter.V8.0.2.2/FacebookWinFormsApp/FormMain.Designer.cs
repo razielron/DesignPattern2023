@@ -173,6 +173,7 @@
             this.listBoxPhotosTaggedIn.Name = "listBoxPhotosTaggedIn";
             this.listBoxPhotosTaggedIn.Size = new System.Drawing.Size(209, 130);
             this.listBoxPhotosTaggedIn.TabIndex = 67;
+            this.listBoxPhotosTaggedIn.SelectedIndexChanged += new System.EventHandler(this.listBoxPhotosTaggedIn_SelectedIndexChanged);
             // 
             // buttonCheckIn
             // 
@@ -215,7 +216,6 @@
             this.listBoxGroups.Name = "listBoxGroups";
             this.listBoxGroups.Size = new System.Drawing.Size(209, 130);
             this.listBoxGroups.TabIndex = 63;
-            this.listBoxGroups.SelectedIndexChanged += new System.EventHandler(this.listBoxGroups_SelectedIndexChanged);
             // 
             // buttonLikePages
             // 
