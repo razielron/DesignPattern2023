@@ -35,7 +35,6 @@ namespace BasicFacebookFeatures
 
         private void login()
         {
-
             m_LoginResult = FacebookService.Login(
                 /// (This is Desig Patter's App ID. replace it with your own)
                 "274259588558246",
@@ -70,7 +69,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             FacebookService.LogoutWithUI();
@@ -83,27 +81,23 @@ namespace BasicFacebookFeatures
 
         private void listBoxPictures_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Photo photo = m_TheLoggedInUser.Albums[listBoxAlbums.SelectedIndex].Photos[listBoxPictures.SelectedIndex];
-            pictureBoxPhotos.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxPhotos.ImageLocation = photo.PictureNormalURL;
+            Photo photo = (Photo)listBoxPictures.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxPhotos, photo?.PictureNormalURL);
         }
         
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Album album = m_TheLoggedInUser.Albums[listBoxAlbums.SelectedIndex];
-            listBoxPictures.DataSource = album.Photos;
+            m_UiControler.DisplayAlbumPhoto(listBoxAlbums, listBoxPictures);
         }
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
         {
             m_UiControler.FetchAlbumsAndDisplayToListBox(listBoxAlbums);
-        } 
+        }
        
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Post post = m_TheLoggedInUser.Posts[listBoxPosts.SelectedIndex];
-            listBoxPostComments.DisplayMember = "Message";
-            listBoxPostComments.DataSource = post.Comments;
+            m_UiControler.DisplayPostComments(listBoxPosts, listBoxPostComments);
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
@@ -118,12 +112,13 @@ namespace BasicFacebookFeatures
 
         private void listBoxLikePages_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ListBoxDataModel<Page> selectedLikedPage = (ListBoxDataModel<Page>)listBoxLikePages.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxLikedPages, selectedLikedPage?.Data?.PictureNormalURL);
         }
 
         private void buttonFetchLikePages_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchLikePagesAndDisplayToListBox(listBoxLikePages);
+            m_UiControler.FetchLikedPagesAndDisplayToListBox(listBoxLikePages);
         }
 
         private void buttonFetchGroups_Click(object sender, EventArgs e)
@@ -153,7 +148,45 @@ namespace BasicFacebookFeatures
 
         private void listBoxPhotosTaggedIn_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ListBoxDataModel<Photo> selectedPhotoTaggedIn = (ListBoxDataModel<Photo>)listBoxPhotosTaggedIn.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxPhotosTaggedIn, selectedPhotoTaggedIn?.Data?.PictureThumbURL);
+        }
 
+        private void textBoxGroupSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayGroupsToListBox(listBoxPosts, textBoxPostsSearch.Text);
+        }
+
+        private void textBoxPostsSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayPostsToListBox(listBoxPosts, textBoxPostsSearch.Text);
+        }
+
+        private void textBoxPhotosTaggenInSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayPhotosTaggedInToListBox(listBoxPhotosTaggedIn, textBoxPhotosTaggenInSearch.Text);
+        }
+
+        private void textBoxCheckInSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayCheckInToListBox(listBoxCheckIn, textBoxCheckInSearch.Text);
+        }
+
+        private void textBoxLikedPagesSearch_TextChanged(object sender, EventArgs e)
+        {
+            m_UiControler.DisplayLikedPagesToListBox(listBoxLikePages, textBoxLikedPagesSearch.Text);
+        }
+
+        private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBoxDataModel<Group> selectedGroups = (ListBoxDataModel<Group>)listBoxGroups.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxGroups, selectedGroups?.Data?.IconUrl);
+        }
+
+        private void listBoxCheckIn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBoxDataModel<Checkin> selectedCheckIn = (ListBoxDataModel<Checkin>)listBoxCheckIn.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxCheckIn, selectedCheckIn?.Data?.PictureURL);
         }
     }
 }
