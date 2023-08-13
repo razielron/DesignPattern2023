@@ -58,11 +58,19 @@
             this.textBoxPhotosTaggenInSearch = new System.Windows.Forms.TextBox();
             this.textBoxCheckInSearch = new System.Windows.Forms.TextBox();
             this.textBoxLikedPagesSearch = new System.Windows.Forms.TextBox();
+            this.pictureBoxPhotosTaggedIn = new System.Windows.Forms.PictureBox();
+            this.pictureBoxGroups = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCheckIn = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLikedPages = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhotos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhotosTaggedIn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCheckIn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLikedPages)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonLogin
@@ -101,6 +109,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.pictureBoxLikedPages);
+            this.tabPage1.Controls.Add(this.pictureBoxCheckIn);
+            this.tabPage1.Controls.Add(this.pictureBoxGroups);
+            this.tabPage1.Controls.Add(this.pictureBoxPhotosTaggedIn);
             this.tabPage1.Controls.Add(this.textBoxLikedPagesSearch);
             this.tabPage1.Controls.Add(this.textBoxCheckInSearch);
             this.tabPage1.Controls.Add(this.textBoxPhotosTaggenInSearch);
@@ -230,7 +242,7 @@
             // buttonFetchLikes
             // 
             this.buttonFetchLikes.BackColor = System.Drawing.Color.MintCream;
-            this.buttonFetchLikes.Location = new System.Drawing.Point(276, 396);
+            this.buttonFetchLikes.Location = new System.Drawing.Point(276, 390);
             this.buttonFetchLikes.Name = "buttonFetchLikes";
             this.buttonFetchLikes.Size = new System.Drawing.Size(178, 31);
             this.buttonFetchLikes.TabIndex = 69;
@@ -243,16 +255,16 @@
             this.listBoxPhotosTaggedIn.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxPhotosTaggedIn.FormattingEnabled = true;
             this.listBoxPhotosTaggedIn.ItemHeight = 22;
-            this.listBoxPhotosTaggedIn.Location = new System.Drawing.Point(258, 284);
+            this.listBoxPhotosTaggedIn.Location = new System.Drawing.Point(258, 260);
             this.listBoxPhotosTaggedIn.Name = "listBoxPhotosTaggedIn";
-            this.listBoxPhotosTaggedIn.Size = new System.Drawing.Size(209, 114);
+            this.listBoxPhotosTaggedIn.Size = new System.Drawing.Size(209, 136);
             this.listBoxPhotosTaggedIn.TabIndex = 67;
             this.listBoxPhotosTaggedIn.SelectedIndexChanged += new System.EventHandler(this.listBoxPhotosTaggedIn_SelectedIndexChanged);
             // 
             // buttonCheckIn
             // 
             this.buttonCheckIn.BackColor = System.Drawing.Color.MintCream;
-            this.buttonCheckIn.Location = new System.Drawing.Point(34, 622);
+            this.buttonCheckIn.Location = new System.Drawing.Point(34, 616);
             this.buttonCheckIn.Name = "buttonCheckIn";
             this.buttonCheckIn.Size = new System.Drawing.Size(178, 31);
             this.buttonCheckIn.TabIndex = 66;
@@ -263,7 +275,7 @@
             // buttonFetchGroups
             // 
             this.buttonFetchGroups.BackColor = System.Drawing.Color.MintCream;
-            this.buttonFetchGroups.Location = new System.Drawing.Point(34, 396);
+            this.buttonFetchGroups.Location = new System.Drawing.Point(34, 390);
             this.buttonFetchGroups.Name = "buttonFetchGroups";
             this.buttonFetchGroups.Size = new System.Drawing.Size(178, 31);
             this.buttonFetchGroups.TabIndex = 65;
@@ -276,29 +288,31 @@
             this.listBoxCheckIn.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxCheckIn.FormattingEnabled = true;
             this.listBoxCheckIn.ItemHeight = 22;
-            this.listBoxCheckIn.Location = new System.Drawing.Point(18, 510);
+            this.listBoxCheckIn.Location = new System.Drawing.Point(18, 485);
             this.listBoxCheckIn.Name = "listBoxCheckIn";
-            this.listBoxCheckIn.Size = new System.Drawing.Size(209, 114);
+            this.listBoxCheckIn.Size = new System.Drawing.Size(209, 136);
             this.listBoxCheckIn.TabIndex = 64;
+            this.listBoxCheckIn.SelectedIndexChanged += new System.EventHandler(this.listBoxCheckIn_SelectedIndexChanged);
             // 
             // listBoxGroups
             // 
             this.listBoxGroups.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxGroups.FormattingEnabled = true;
             this.listBoxGroups.ItemHeight = 22;
-            this.listBoxGroups.Location = new System.Drawing.Point(18, 284);
+            this.listBoxGroups.Location = new System.Drawing.Point(18, 260);
             this.listBoxGroups.Name = "listBoxGroups";
-            this.listBoxGroups.Size = new System.Drawing.Size(209, 114);
+            this.listBoxGroups.Size = new System.Drawing.Size(209, 136);
             this.listBoxGroups.TabIndex = 63;
+            this.listBoxGroups.SelectedIndexChanged += new System.EventHandler(this.listBoxGroups_SelectedIndexChanged);
             // 
             // buttonLikePages
             // 
             this.buttonLikePages.BackColor = System.Drawing.Color.MintCream;
-            this.buttonLikePages.Location = new System.Drawing.Point(276, 622);
+            this.buttonLikePages.Location = new System.Drawing.Point(276, 616);
             this.buttonLikePages.Name = "buttonLikePages";
             this.buttonLikePages.Size = new System.Drawing.Size(178, 31);
             this.buttonLikePages.TabIndex = 62;
-            this.buttonLikePages.Text = "Fetch Like Pages";
+            this.buttonLikePages.Text = "Fetch Liked Pages";
             this.buttonLikePages.UseVisualStyleBackColor = false;
             this.buttonLikePages.Click += new System.EventHandler(this.buttonFetchLikePages_Click);
             // 
@@ -318,9 +332,9 @@
             this.listBoxPosts.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxPosts.FormattingEnabled = true;
             this.listBoxPosts.ItemHeight = 22;
-            this.listBoxPosts.Location = new System.Drawing.Point(502, 284);
+            this.listBoxPosts.Location = new System.Drawing.Point(502, 262);
             this.listBoxPosts.Name = "listBoxPosts";
-            this.listBoxPosts.Size = new System.Drawing.Size(345, 114);
+            this.listBoxPosts.Size = new System.Drawing.Size(345, 136);
             this.listBoxPosts.TabIndex = 60;
             this.listBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
             // 
@@ -329,14 +343,16 @@
             this.listBoxLikePages.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxLikePages.FormattingEnabled = true;
             this.listBoxLikePages.ItemHeight = 22;
-            this.listBoxLikePages.Location = new System.Drawing.Point(258, 510);
+            this.listBoxLikePages.Location = new System.Drawing.Point(259, 485);
             this.listBoxLikePages.Name = "listBoxLikePages";
-            this.listBoxLikePages.Size = new System.Drawing.Size(209, 114);
+            this.listBoxLikePages.Size = new System.Drawing.Size(209, 136);
             this.listBoxLikePages.TabIndex = 57;
             this.listBoxLikePages.SelectedIndexChanged += new System.EventHandler(this.listBoxLikePages_SelectedIndexChanged);
             // 
             // pictureBoxProfile
             // 
+            this.pictureBoxProfile.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxProfile.InitialImage = null;
             this.pictureBoxProfile.Location = new System.Drawing.Point(18, 96);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
             this.pictureBoxProfile.Size = new System.Drawing.Size(209, 122);
@@ -357,7 +373,7 @@
             // textBoxGroupSearch
             // 
             this.textBoxGroupSearch.AccessibleDescription = "";
-            this.textBoxGroupSearch.Location = new System.Drawing.Point(18, 261);
+            this.textBoxGroupSearch.Location = new System.Drawing.Point(18, 236);
             this.textBoxGroupSearch.Name = "textBoxGroupSearch";
             this.textBoxGroupSearch.Size = new System.Drawing.Size(209, 28);
             this.textBoxGroupSearch.TabIndex = 76;
@@ -366,7 +382,7 @@
             // textBoxPostsSearch
             // 
             this.textBoxPostsSearch.AccessibleDescription = "";
-            this.textBoxPostsSearch.Location = new System.Drawing.Point(502, 261);
+            this.textBoxPostsSearch.Location = new System.Drawing.Point(502, 236);
             this.textBoxPostsSearch.Name = "textBoxPostsSearch";
             this.textBoxPostsSearch.Size = new System.Drawing.Size(345, 28);
             this.textBoxPostsSearch.TabIndex = 77;
@@ -375,7 +391,7 @@
             // textBoxPhotosTaggenInSearch
             // 
             this.textBoxPhotosTaggenInSearch.AccessibleDescription = "";
-            this.textBoxPhotosTaggenInSearch.Location = new System.Drawing.Point(258, 261);
+            this.textBoxPhotosTaggenInSearch.Location = new System.Drawing.Point(258, 236);
             this.textBoxPhotosTaggenInSearch.Name = "textBoxPhotosTaggenInSearch";
             this.textBoxPhotosTaggenInSearch.Size = new System.Drawing.Size(209, 28);
             this.textBoxPhotosTaggenInSearch.TabIndex = 78;
@@ -384,7 +400,7 @@
             // textBoxCheckInSearch
             // 
             this.textBoxCheckInSearch.AccessibleDescription = "";
-            this.textBoxCheckInSearch.Location = new System.Drawing.Point(18, 487);
+            this.textBoxCheckInSearch.Location = new System.Drawing.Point(18, 461);
             this.textBoxCheckInSearch.Name = "textBoxCheckInSearch";
             this.textBoxCheckInSearch.Size = new System.Drawing.Size(209, 28);
             this.textBoxCheckInSearch.TabIndex = 79;
@@ -393,11 +409,51 @@
             // textBoxLikedPagesSearch
             // 
             this.textBoxLikedPagesSearch.AccessibleDescription = "";
-            this.textBoxLikedPagesSearch.Location = new System.Drawing.Point(258, 487);
+            this.textBoxLikedPagesSearch.Location = new System.Drawing.Point(259, 461);
             this.textBoxLikedPagesSearch.Name = "textBoxLikedPagesSearch";
             this.textBoxLikedPagesSearch.Size = new System.Drawing.Size(209, 28);
             this.textBoxLikedPagesSearch.TabIndex = 80;
             this.textBoxLikedPagesSearch.TextChanged += new System.EventHandler(this.textBoxLikedPagesSearch_TextChanged);
+            // 
+            // pictureBoxPhotosTaggedIn
+            // 
+            this.pictureBoxPhotosTaggedIn.BackColor = System.Drawing.Color.DarkGray;
+            this.pictureBoxPhotosTaggedIn.InitialImage = null;
+            this.pictureBoxPhotosTaggedIn.Location = new System.Drawing.Point(397, 324);
+            this.pictureBoxPhotosTaggedIn.Name = "pictureBoxPhotosTaggedIn";
+            this.pictureBoxPhotosTaggedIn.Size = new System.Drawing.Size(70, 70);
+            this.pictureBoxPhotosTaggedIn.TabIndex = 81;
+            this.pictureBoxPhotosTaggedIn.TabStop = false;
+            // 
+            // pictureBoxGroups
+            // 
+            this.pictureBoxGroups.BackColor = System.Drawing.Color.DarkGray;
+            this.pictureBoxGroups.InitialImage = null;
+            this.pictureBoxGroups.Location = new System.Drawing.Point(157, 324);
+            this.pictureBoxGroups.Name = "pictureBoxGroups";
+            this.pictureBoxGroups.Size = new System.Drawing.Size(70, 70);
+            this.pictureBoxGroups.TabIndex = 82;
+            this.pictureBoxGroups.TabStop = false;
+            // 
+            // pictureBoxCheckIn
+            // 
+            this.pictureBoxCheckIn.BackColor = System.Drawing.Color.DarkGray;
+            this.pictureBoxCheckIn.InitialImage = null;
+            this.pictureBoxCheckIn.Location = new System.Drawing.Point(157, 549);
+            this.pictureBoxCheckIn.Name = "pictureBoxCheckIn";
+            this.pictureBoxCheckIn.Size = new System.Drawing.Size(70, 70);
+            this.pictureBoxCheckIn.TabIndex = 83;
+            this.pictureBoxCheckIn.TabStop = false;
+            // 
+            // pictureBoxLikedPages
+            // 
+            this.pictureBoxLikedPages.BackColor = System.Drawing.Color.DarkGray;
+            this.pictureBoxLikedPages.InitialImage = null;
+            this.pictureBoxLikedPages.Location = new System.Drawing.Point(398, 549);
+            this.pictureBoxLikedPages.Name = "pictureBoxLikedPages";
+            this.pictureBoxLikedPages.Size = new System.Drawing.Size(70, 70);
+            this.pictureBoxLikedPages.TabIndex = 84;
+            this.pictureBoxLikedPages.TabStop = false;
             // 
             // FormMain
             // 
@@ -416,6 +472,10 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhotos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhotosTaggedIn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroups)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCheckIn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLikedPages)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -452,6 +512,10 @@
         private System.Windows.Forms.TextBox textBoxPhotosTaggenInSearch;
         private System.Windows.Forms.TextBox textBoxCheckInSearch;
         private System.Windows.Forms.TextBox textBoxLikedPagesSearch;
+        private System.Windows.Forms.PictureBox pictureBoxLikedPages;
+        private System.Windows.Forms.PictureBox pictureBoxCheckIn;
+        private System.Windows.Forms.PictureBox pictureBoxGroups;
+        private System.Windows.Forms.PictureBox pictureBoxPhotosTaggedIn;
     }
 }
 

@@ -35,7 +35,6 @@ namespace BasicFacebookFeatures
 
         private void login()
         {
-
             m_LoginResult = FacebookService.Login(
                 /// (This is Desig Patter's App ID. replace it with your own)
                 "274259588558246",
@@ -83,48 +82,22 @@ namespace BasicFacebookFeatures
         private void listBoxPictures_SelectedIndexChanged(object sender, EventArgs e)
         {
             Photo photo = (Photo)listBoxPictures.SelectedItem;
-            pictureBoxPhotos.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxPhotos.ImageLocation = photo?.PictureNormalURL;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxPhotos, photo?.PictureNormalURL);
         }
         
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxDataModel selectedAlbum = (ListBoxDataModel)listBoxAlbums.SelectedItem;
-
-            try
-            {
-                Album album = m_TheLoggedInUser.Albums
-                    .Where(x => x.Id == selectedAlbum?.Id)
-                    .FirstOrDefault();
-                listBoxPictures.DataSource = album?.Photos;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            m_UiControler.DisplayAlbumPhoto(listBoxAlbums, listBoxPictures);
         }
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
         {
             m_UiControler.FetchAlbumsAndDisplayToListBox(listBoxAlbums);
-        } 
+        }
        
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxDataModel selectedPost = (ListBoxDataModel)listBoxPosts.SelectedItem;
-
-            try
-            {
-                Post post = m_TheLoggedInUser.Posts
-                    .Where(x => x.Id == selectedPost.Id)
-                    .FirstOrDefault();
-                listBoxPostComments.DisplayMember = "Message";
-                listBoxPostComments.DataSource = post.Comments;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            m_UiControler.DisplayPostComments(listBoxPosts, listBoxPostComments);
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
@@ -139,7 +112,8 @@ namespace BasicFacebookFeatures
 
         private void listBoxLikePages_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ListBoxDataModel<Page> selectedLikedPage = (ListBoxDataModel<Page>)listBoxLikePages.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxLikedPages, selectedLikedPage?.Data?.PictureNormalURL);
         }
 
         private void buttonFetchLikePages_Click(object sender, EventArgs e)
@@ -174,7 +148,8 @@ namespace BasicFacebookFeatures
 
         private void listBoxPhotosTaggedIn_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ListBoxDataModel<Photo> selectedPhotoTaggedIn = (ListBoxDataModel<Photo>)listBoxPhotosTaggedIn.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxPhotosTaggedIn, selectedPhotoTaggedIn?.Data?.PictureThumbURL);
         }
 
         private void textBoxGroupSearch_TextChanged(object sender, EventArgs e)
@@ -200,6 +175,18 @@ namespace BasicFacebookFeatures
         private void textBoxLikedPagesSearch_TextChanged(object sender, EventArgs e)
         {
             m_UiControler.DisplayLikedPagesToListBox(listBoxLikePages, textBoxLikedPagesSearch.Text);
+        }
+
+        private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBoxDataModel<Group> selectedGroups = (ListBoxDataModel<Group>)listBoxGroups.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxGroups, selectedGroups?.Data?.IconUrl);
+        }
+
+        private void listBoxCheckIn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBoxDataModel<Checkin> selectedCheckIn = (ListBoxDataModel<Checkin>)listBoxCheckIn.SelectedItem;
+            m_UiControler.DisplayImageInPictureBox(pictureBoxCheckIn, selectedCheckIn?.Data?.PictureURL);
         }
     }
 }

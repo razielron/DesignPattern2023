@@ -11,12 +11,12 @@ namespace BasicFacebookFeatures
     public class UiControler
     {
         private User m_TheLoggedInUser;
-        private ListBoxFilterManager m_PostsFilterManager;
-        private ListBoxFilterManager m_LikedPagesFilterManager;
-        private ListBoxFilterManager m_CheckInFilterManager;
-        private ListBoxFilterManager m_AlbumsFilterManager;
-        private ListBoxFilterManager m_GroupsFilterManager;
-        private ListBoxFilterManager m_PhotosTaggedInFilterManager;
+        private ListBoxFilterManager<Post> m_PostsFilterManager;
+        private ListBoxFilterManager<Page> m_LikedPagesFilterManager;
+        private ListBoxFilterManager<Checkin> m_CheckInFilterManager;
+        private ListBoxFilterManager<Album> m_AlbumsFilterManager;
+        private ListBoxFilterManager<Group> m_GroupsFilterManager;
+        private ListBoxFilterManager<Photo> m_PhotosTaggedInFilterManager;
 
         public UiControler(FacebookWrapper.ObjectModel.User i_TheLoggedInUser)
         {
@@ -44,7 +44,7 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxPosts);
                 allPosts = m_TheLoggedInUser.Posts;
-                m_PostsFilterManager = new ListBoxFilterManager(allPosts.Select(convertPostToListBoxDataModel));
+                m_PostsFilterManager = new ListBoxFilterManager<Post>(allPosts.Select(convertPostToListBoxDataModel));
                 DisplayPostsToListBox(i_ListBoxPosts, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -65,7 +65,7 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxLikePages);
                 allPages = m_TheLoggedInUser.LikedPages;
-                m_LikedPagesFilterManager = new ListBoxFilterManager(allPages.Select(convertLikedPagesToListBoxDataModel));
+                m_LikedPagesFilterManager = new ListBoxFilterManager<Page>(allPages.Select(convertLikedPagesToListBoxDataModel));
                 DisplayLikedPagesToListBox(i_ListBoxLikePages, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -86,7 +86,7 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxCheckIn);
                 allCheckin = m_TheLoggedInUser.Checkins;
-                m_CheckInFilterManager = new ListBoxFilterManager(allCheckin.Select(convertCheckInToListBoxDataModel));
+                m_CheckInFilterManager = new ListBoxFilterManager<Checkin>(allCheckin.Select(convertCheckInToListBoxDataModel));
                 DisplayCheckInToListBox(i_ListBoxCheckIn, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxAlbums);
                 allAlbums = m_TheLoggedInUser.Albums;
-                m_AlbumsFilterManager = new ListBoxFilterManager(allAlbums.Select(convertAlbumToListBoxDataModel));
+                m_AlbumsFilterManager = new ListBoxFilterManager<Album>(allAlbums.Select(convertAlbumToListBoxDataModel));
                 DisplayAlbumsToListBox(i_ListBoxAlbums, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -128,7 +128,7 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxGroups);
                 allGroups = m_TheLoggedInUser.Groups;
-                m_GroupsFilterManager = new ListBoxFilterManager(allGroups.Select(convertGroupToListBoxDataModel));
+                m_GroupsFilterManager = new ListBoxFilterManager<Group>(allGroups.Select(convertGroupToListBoxDataModel));
                 DisplayGroupsToListBox(i_ListBoxGroups, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -149,7 +149,7 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxPhotosTaggedIn);
                 allPhotos = m_TheLoggedInUser.PhotosTaggedIn;
-                m_PhotosTaggedInFilterManager = new ListBoxFilterManager(allPhotos.Select(convertPhotoToListBoxDataModel));
+                m_PhotosTaggedInFilterManager = new ListBoxFilterManager<Photo>(allPhotos.Select(convertPhotoToListBoxDataModel));
                 DisplayPhotosTaggedInToListBox(i_ListBoxPhotosTaggedIn, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -192,6 +192,43 @@ namespace BasicFacebookFeatures
             i_ListBox.DataSource = m_PhotosTaggedInFilterManager.FilterData(i_Filter);
         }
 
+        public void DisplayImageInPictureBox(PictureBox i_PictureBox, string i_PictureURL)
+        {
+            i_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            i_PictureBox.ImageLocation = i_PictureURL;
+        }
+
+        public void DisplayPostComments(ListBox i_SourceListBox, ListBox i_DestListBox)
+        {
+            ListBoxDataModel<Post> selectedPost = (ListBoxDataModel<Post>)i_SourceListBox.SelectedItem;
+
+            try
+            {
+                Post post = selectedPost.Data;
+                i_DestListBox.DisplayMember = "Message";
+                i_DestListBox.DataSource = post.Comments;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void DisplayAlbumPhoto(ListBox i_SourceListBox, ListBox i_DestListBox)
+        {
+            ListBoxDataModel<Album> selectedAlbum = (ListBoxDataModel<Album>)i_SourceListBox.SelectedItem;
+
+            try
+            {
+                Album album = selectedAlbum.Data;
+                i_DestListBox.DataSource = album.Photos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void initiateListBox(ListBox i_ListBox)
         {
             i_ListBox.DataSource = null;
@@ -206,7 +243,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private ListBoxDataModel convertPostToListBoxDataModel(Post i_Post)
+        private ListBoxDataModel<Post> convertPostToListBoxDataModel(Post i_Post)
         {
             string displayName = "";
 
@@ -223,23 +260,25 @@ namespace BasicFacebookFeatures
                 displayName = string.Format("[{0}]", i_Post.Type);
             }
 
-            return new ListBoxDataModel
+            return new ListBoxDataModel<Post>
             {
                 Id = i_Post.Id,
                 DisplayName = displayName,
+                Data = i_Post,
             };
         }
 
-        private ListBoxDataModel convertLikedPagesToListBoxDataModel(Page i_Page)
+        private ListBoxDataModel<Page> convertLikedPagesToListBoxDataModel(Page i_Page)
         {
-            return new ListBoxDataModel
+            return new ListBoxDataModel<Page>
             {
                 Id = i_Page.Id,
                 DisplayName = i_Page.Name,
+                Data = i_Page,
             };
         }
 
-        private ListBoxDataModel convertCheckInToListBoxDataModel(Checkin i_CheckIn)
+        private ListBoxDataModel<Checkin> convertCheckInToListBoxDataModel(Checkin i_CheckIn)
         {
             string displayName = "";
 
@@ -260,37 +299,41 @@ namespace BasicFacebookFeatures
                 displayName = string.Format("[{0}]", i_CheckIn.Type);
             }
 
-            return new ListBoxDataModel
+            return new ListBoxDataModel<Checkin>
             {
                 Id = i_CheckIn.Id,
                 DisplayName = displayName,
+                Data = i_CheckIn,
             };
         }
 
-        private ListBoxDataModel convertAlbumToListBoxDataModel(Album i_Album)
+        private ListBoxDataModel<Album> convertAlbumToListBoxDataModel(Album i_Album)
         {
-            return new ListBoxDataModel
+            return new ListBoxDataModel<Album>
             {
                 Id = i_Album.Id,
                 DisplayName = i_Album.Name,
+                Data = i_Album,
             };
         }
 
-        private ListBoxDataModel convertGroupToListBoxDataModel(Group i_Group)
+        private ListBoxDataModel<Group> convertGroupToListBoxDataModel(Group i_Group)
         {
-            return new ListBoxDataModel
+            return new ListBoxDataModel<Group>
             {
                 Id = i_Group.Id,
                 DisplayName = i_Group.Name,
+                Data = i_Group,
             };
         }
 
-        private ListBoxDataModel convertPhotoToListBoxDataModel(Photo i_Photo)
+        private ListBoxDataModel<Photo> convertPhotoToListBoxDataModel(Photo i_Photo)
         {
-            return new ListBoxDataModel
+            return new ListBoxDataModel<Photo>
             {
                 Id = i_Photo.Id,
                 DisplayName = i_Photo.Name,
+                Data = i_Photo,
             };
         }
     }

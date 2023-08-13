@@ -3,23 +3,23 @@ using System.Linq;
 
 namespace BasicFacebookFeatures
 {
-    public class ListBoxFilterManager
+    public class ListBoxFilterManager<T>
     {
-        private IEnumerable<ListBoxDataModel> m_AllData;
-        private IEnumerable<ListBoxDataModel> m_FilteredData;
+        private IEnumerable<ListBoxDataModel<T>> m_AllData;
+        private IEnumerable<ListBoxDataModel<T>> m_FilteredData;
 
-        public ListBoxFilterManager(IEnumerable<ListBoxDataModel> allData)
+        public ListBoxFilterManager(IEnumerable<ListBoxDataModel<T>> allData)
         {
             m_AllData = allData;
             m_FilteredData = allData;
         }
 
-        public List<ListBoxDataModel> GetDisplayedData()
+        public List<ListBoxDataModel<T>> GetDisplayedData()
         {
             return m_FilteredData.ToList();
         }
 
-        public List<ListBoxDataModel> FilterData(string filter)
+        public List<ListBoxDataModel<T>> FilterData(string filter)
         {
             m_FilteredData = m_AllData
                 .Where(x => x.DisplayName.ToLower().Contains(filter.ToLower()));
