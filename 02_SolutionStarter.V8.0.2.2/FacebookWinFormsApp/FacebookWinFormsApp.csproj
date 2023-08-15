@@ -89,6 +89,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BestFriend.cs" />
+    <Compile Include="BestFriendsFeature.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +99,7 @@
     </Compile>
     <Compile Include="ListBoxDataModel.cs" />
     <Compile Include="ListBoxFilterManager.cs" />
+    <Compile Include="PhotoManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UiControler.cs" />

@@ -22,7 +22,7 @@ namespace BasicFacebookFeatures
         public List<ListBoxDataModel<T>> FilterData(string filter)
         {
             m_FilteredData = m_AllData
-                .Where(x => x.DisplayName.ToLower().Contains(filter.ToLower()));
+                .Where(x => x.DisplayName?.ToLower().Contains(filter.ToLower()) ?? false);
 
             return m_FilteredData.ToList();
         }
