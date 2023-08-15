@@ -229,6 +229,20 @@ namespace BasicFacebookFeatures
             }
         }
 
+        public void DisplayBestFriends(List<BestFriend> i_BestFriends, ListBox i_ListBox)
+        {
+            try
+            {
+                i_ListBox.DataSource = i_BestFriends;
+                i_ListBox.DisplayMember = "DisplayName"; 
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void initiateListBox(ListBox i_ListBox)
         {
             i_ListBox.DataSource = null;
@@ -336,5 +350,6 @@ namespace BasicFacebookFeatures
                 Data = i_Photo,
             };
         }
+        
     }
 }

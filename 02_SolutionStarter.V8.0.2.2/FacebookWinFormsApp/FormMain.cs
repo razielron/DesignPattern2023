@@ -16,6 +16,7 @@ namespace BasicFacebookFeatures
         FacebookWrapper.LoginResult m_LoginResult;
         FacebookWrapper.ObjectModel.User m_TheLoggedInUser;
         UiControler m_UiControler;
+        
 
         public FormMain()
         {
@@ -43,7 +44,7 @@ namespace BasicFacebookFeatures
                 //"public_profile",
                 "user_age_range",
                 "user_birthday",
-                //"user_friends",
+                "user_friends",
                 "user_gender",
                 "user_hometown",
                 "user_likes",
@@ -57,6 +58,7 @@ namespace BasicFacebookFeatures
                 );
             m_TheLoggedInUser = m_LoginResult.LoggedInUser;
             m_UiControler = new UiControler(m_TheLoggedInUser);
+            
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
@@ -187,6 +189,118 @@ namespace BasicFacebookFeatures
         {
             ListBoxDataModel<Checkin> selectedCheckIn = (ListBoxDataModel<Checkin>)listBoxCheckIn.SelectedItem;
             m_UiControler.DisplayImageInPictureBox(pictureBoxCheckIn, selectedCheckIn?.Data?.PictureURL);
+        }
+
+
+        private void buttonFetchBestFriends_Click(object sender, EventArgs e)
+        {
+            BestFriendsFeature bestFriendsManager = new BestFriendsFeature();
+
+            List<BestFriend> bestFriends = bestFriendsManager.FetchAndSortBestFriends(m_TheLoggedInUser);
+
+            m_UiControler.DisplayBestFriends(bestFriends, listBoxBestFriend);
+        }
+
+        
+       
+        private void comboBoxPhotoSortBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedSortingOption = comboBoxPhotoSortBy.SelectedItem.ToString().ToLower();
+
+        }
+
+        private void buttonFetchSortedPhotos_Click(object sender, EventArgs eM)
+        {
+            string selectedsortingoption = comboBoxPhotoSortBy.SelectedItem.ToString().ToLower();
+            FacebookObjectCollection<Album> albums = m_TheLoggedInUser.Albums;
+            PhotoManager photoManager = new PhotoManager(albums);
+
+            if (selectedsortingoption == "countries")
+            {
+                List<string> countries = photoManager.GetUniqueCountries();
+                DisplayCountriesList(countries);
+            }
+            else
+            {
+                List<Photo> sortedPhotos = GetSortedPhotos(selectedsortingoption, photoManager);
+                DisplaySortedPhotos(sortedPhotos);
+            }
+        }
+
+        private void DisplayCountriesList(List<string> countries)
+        {
+            listBoxCountries.DataSource = countries;
+        }
+
+        private List<Photo> GetSortedPhotos(string i_SortingOption, PhotoManager i_PhotoManager)
+        {
+            List<Photo> resSortedPhotos = new List<Photo>();
+
+            switch (i_SortingOption)
+            {
+                case "most likes":
+                    resSortedPhotos = SortByMostLikes();
+                    break;
+                case "most comments":
+                    resSortedPhotos = SortByMostComments();
+                    break;
+                case "create date":
+                    resSortedPhotos = SortByCreateDate();
+                    break;
+            }
+
+            return resSortedPhotos;
+        }
+
+        public List<Photo> SortByMostLikes()
+        {
+            List<Photo> sortedPhotos = m_TheLoggedInUser.Albums.SelectMany(album => album.Photos)
+                .OrderByDescending(photo => photo.LikedBy.Count)
+                .ToList();
+
+            return sortedPhotos;
+        }
+
+        public List<Photo> SortByMostComments()
+        {
+            List<Photo> sortedPhotos = m_TheLoggedInUser.Albums.SelectMany(album => album.Photos)
+                .OrderByDescending(photo => photo.Comments.Count)
+                .ToList();
+
+            return sortedPhotos;
+        }
+
+        public List<Photo> SortByCreateDate()
+        {
+            List<Photo> sortedPhotos = m_TheLoggedInUser.Albums.SelectMany(album => album.Photos)
+                .OrderBy(photo => photo.CreatedTime)
+                .ToList();
+
+            return sortedPhotos;
+        }
+
+        private void listBoxCountries_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FacebookObjectCollection<Album> albums = m_TheLoggedInUser.Albums;
+            PhotoManager photoManager = new PhotoManager(albums);
+            string selectedCountry = listBoxCountries.SelectedItem.ToString();
+            List<Photo> photosInCountry = photoManager.GetPhotosTakenInCountry(selectedCountry);
+            DisplaySortedPhotos(photosInCountry);
+        }
+
+        private void DisplaySortedPhotos(List<Photo> photos)
+        {
+            listBoxSortedPhotos.DataSource = photos;
+            listBoxSortedPhotos.DisplayMember = "PhotoName"; // Replace with the actual property name
+        }
+
+        private void listBoxBestFriends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BestFriend selectedBestFriend = (BestFriend)listBoxBestFriends.SelectedItem;
+            listBoxStatistics.Items.Clear();
+            listBoxStatistics.Items.Add($"Likes: {selectedBestFriend.LikesCounter}");
+            listBoxStatistics.Items.Add($"Comments: {selectedBestFriend.CommentsCounter}");
+            listBoxStatistics.Items.Add($"Total Points: {selectedBestFriend.TotalPoints}");
         }
     }
 }
