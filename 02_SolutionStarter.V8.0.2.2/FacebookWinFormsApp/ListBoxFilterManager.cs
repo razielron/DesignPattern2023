@@ -5,10 +5,10 @@ namespace BasicFacebookFeatures
 {
     public class ListBoxFilterManager<T>
     {
-        private IEnumerable<ListBoxDataModel<T>> m_AllData;
-        private IEnumerable<ListBoxDataModel<T>> m_FilteredData;
+        private List<ListBoxDataModel<T>> m_AllData;
+        private List<ListBoxDataModel<T>> m_FilteredData;
 
-        public ListBoxFilterManager(IEnumerable<ListBoxDataModel<T>> allData)
+        public ListBoxFilterManager(List<ListBoxDataModel<T>> allData)
         {
             m_AllData = allData;
             m_FilteredData = allData;
@@ -22,9 +22,10 @@ namespace BasicFacebookFeatures
         public List<ListBoxDataModel<T>> FilterData(string filter)
         {
             m_FilteredData = m_AllData
-                .Where(x => x.DisplayName?.ToLower().Contains(filter.ToLower()) ?? false);
+                .Where(x => x.DisplayName?.ToLower().Contains(filter.ToLower()) ?? false)
+                .ToList();
 
-            return m_FilteredData.ToList();
+            return m_FilteredData;
         }
     }
 }
