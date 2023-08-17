@@ -1,34 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
 
 namespace BasicFacebookFeatures
 {
-    public class BestFriendsFeature
+    public class BestFriendsManager
     {
-        public List<BestFriend> FetchAndSortBestFriends(User i_LoggedInUser)
+        private List<Post> m_Posts;
+        public List<BestFriend> BestFriends;
+
+        public BestFriendsManager(List<Post> i_Posts)
         {
-            List<BestFriend> bestFriends = new List<BestFriend>();
+            m_Posts = i_Posts;
+            BestFriends = new List<BestFriend>();
+            updateBestFriends();
+        }
 
-            var postsResponse = i_LoggedInUser.Posts;
-            var postsData = postsResponse;
+        public List<string> GetLikeAndCommentsStatistics(BestFriend i_BestFriend)
+        {
+            List<string> statistics = new List<string>();
 
-            foreach (Post post in postsData)
+            statistics.Add($"Likes: {i_BestFriend.LikesCounter}");
+            statistics.Add($"Comments: {i_BestFriend.CommentsCounter}");
+            statistics.Add($"Total Points: {i_BestFriend.TotalPoints}");
+
+            return statistics;
+        }
+
+        private void updateBestFriends()
+        {
+            foreach (Post post in m_Posts)
             {
-                countLikesPerFriend(post, bestFriends);
-                countCommentsPerFriend(post, bestFriends); 
+                countLikesPerFriend(post, BestFriends);
+                countCommentsPerFriend(post, BestFriends);
             }
 
-            bestFriends.Sort((f1, f2) => f2.TotalPoints.CompareTo(f1.TotalPoints));
-
-            return bestFriends;
+            BestFriends.Sort((f1, f2) => f2.TotalPoints.CompareTo(f1.TotalPoints));
         }
 
         private void countLikesPerFriend(Post post, List<BestFriend> bestFriends)
@@ -71,7 +78,5 @@ namespace BasicFacebookFeatures
                 bestFriend.CommentsCounter += 1; 
             }
         }
-
-
     }
 }

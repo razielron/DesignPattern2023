@@ -17,8 +17,10 @@ namespace BasicFacebookFeatures
         private ListBoxFilterManager<Album> m_AlbumsFilterManager;
         private ListBoxFilterManager<Group> m_GroupsFilterManager;
         private ListBoxFilterManager<Photo> m_PhotosTaggedInFilterManager;
+        private ICategoryPhotoManager m_CategoryPhotoManager;
+        private BestFriendsManager m_BestFriendsManager;
 
-        public UiControler(FacebookWrapper.ObjectModel.User i_TheLoggedInUser)
+        public UiControler(User i_TheLoggedInUser)
         {
             m_TheLoggedInUser = i_TheLoggedInUser;
         }
@@ -44,7 +46,9 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxPosts);
                 allPosts = m_TheLoggedInUser.Posts;
-                m_PostsFilterManager = new ListBoxFilterManager<Post>(allPosts.Select(convertPostToListBoxDataModel));
+                m_PostsFilterManager = new ListBoxFilterManager<Post>(allPosts
+                    .Select(convertPostToListBoxDataModel)
+                    .ToList());
                 DisplayPostsToListBox(i_ListBoxPosts, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -65,7 +69,9 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxLikePages);
                 allPages = m_TheLoggedInUser.LikedPages;
-                m_LikedPagesFilterManager = new ListBoxFilterManager<Page>(allPages.Select(convertLikedPagesToListBoxDataModel));
+                m_LikedPagesFilterManager = new ListBoxFilterManager<Page>(allPages
+                    .Select(convertLikedPagesToListBoxDataModel)
+                    .ToList());
                 DisplayLikedPagesToListBox(i_ListBoxLikePages, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -86,7 +92,9 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxCheckIn);
                 allCheckin = m_TheLoggedInUser.Checkins;
-                m_CheckInFilterManager = new ListBoxFilterManager<Checkin>(allCheckin.Select(convertCheckInToListBoxDataModel));
+                m_CheckInFilterManager = new ListBoxFilterManager<Checkin>(allCheckin
+                    .Select(convertCheckInToListBoxDataModel)
+                    .ToList());
                 DisplayCheckInToListBox(i_ListBoxCheckIn, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -107,7 +115,9 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxAlbums);
                 allAlbums = m_TheLoggedInUser.Albums;
-                m_AlbumsFilterManager = new ListBoxFilterManager<Album>(allAlbums.Select(convertAlbumToListBoxDataModel));
+                m_AlbumsFilterManager = new ListBoxFilterManager<Album>(allAlbums
+                    .Select(convertAlbumToListBoxDataModel)
+                    .ToList());
                 DisplayAlbumsToListBox(i_ListBoxAlbums, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -128,7 +138,9 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxGroups);
                 allGroups = m_TheLoggedInUser.Groups;
-                m_GroupsFilterManager = new ListBoxFilterManager<Group>(allGroups.Select(convertGroupToListBoxDataModel));
+                m_GroupsFilterManager = new ListBoxFilterManager<Group>(allGroups
+                    .Select(convertGroupToListBoxDataModel)
+                    .ToList());
                 DisplayGroupsToListBox(i_ListBoxGroups, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -149,7 +161,9 @@ namespace BasicFacebookFeatures
             {
                 initiateListBox(i_ListBoxPhotosTaggedIn);
                 allPhotos = m_TheLoggedInUser.PhotosTaggedIn;
-                m_PhotosTaggedInFilterManager = new ListBoxFilterManager<Photo>(allPhotos.Select(convertPhotoToListBoxDataModel));
+                m_PhotosTaggedInFilterManager = new ListBoxFilterManager<Photo>(allPhotos
+                    .Select(convertPhotoToListBoxDataModel)
+                    .ToList());
                 DisplayPhotosTaggedInToListBox(i_ListBoxPhotosTaggedIn, i_Filter: string.Empty);
             }
             catch (Exception ex)
@@ -160,6 +174,61 @@ namespace BasicFacebookFeatures
             {
                 handleNoData(i_ListBoxPhotosTaggedIn, allPhotos);
             }
+        }
+
+        public void FetchPhotosPerCategoryAndDisplayToListBox(ComboBox i_ComboBox, ListBox i_ListBox)
+        {
+            FacebookObjectCollection<Album> albums = null;
+
+            try
+            {
+                List<Photo> allPhotos;
+                string selectedCategory = i_ComboBox.SelectedItem.ToString().ToLower();
+                
+                albums = m_TheLoggedInUser.Albums;
+                allPhotos = albums.SelectMany(x => x.Photos).ToList();
+                m_CategoryPhotoManager = CategoryPhotoManagerFactory.CreateCategoryPhotoManager(selectedCategory, allPhotos);
+                DisplayItemsToCategoryListBox(i_ListBox);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                handleNoData(i_ListBox, albums);
+            }
+        }
+
+        public void FetchBestFriendsAndDisplayToListBox(ListBox i_ListBox)
+        {
+            FacebookObjectCollection<Post> postsResponse = null;
+
+            try
+            {
+                postsResponse = m_TheLoggedInUser.Posts;
+                m_BestFriendsManager = new BestFriendsManager(postsResponse.ToList());
+                DisplayItemsToCategoryListBox(i_ListBox);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                handleNoData(i_ListBox, postsResponse);
+            }
+        }
+
+        public void SelectItemOfCategoryAndDisplayToPhotoListBox(ListBox i_SelectListBox, ListBox i_DisplayListBox)
+        {
+            string selectedItem = i_SelectListBox.SelectedItem.ToString().ToLower();
+            i_DisplayListBox.DataSource = m_CategoryPhotoManager.GetPhotosByItem(selectedItem);
+        }
+
+        public void DisplayItemsToCategoryListBox(ListBox i_ListBox)
+        {
+            i_ListBox.DataSource = m_CategoryPhotoManager.Items;
         }
 
         public void DisplayPostsToListBox(ListBox i_ListBox, string i_Filter)
@@ -229,18 +298,11 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public void DisplayBestFriends(List<BestFriend> i_BestFriends, ListBox i_ListBox)
+        public void DisplayBestFriendStatistics(ListBox i_ListBox)
         {
-            try
-            {
-                i_ListBox.DataSource = i_BestFriends;
-                i_ListBox.DisplayMember = "DisplayName"; 
+            BestFriend selectedBestFriend = (BestFriend)i_ListBox.SelectedItem;
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            i_ListBox.DataSource = m_BestFriendsManager.GetLikeAndCommentsStatistics(selectedBestFriend);
         }
 
         private void initiateListBox(ListBox i_ListBox)
