@@ -22,7 +22,7 @@ namespace BasicFacebookFeatures
             foreach (Photo photo in m_AllPhotos)
             {
                 string photoCountry = photo.Place?.Location?.Country;
-                if (photoCountry == i_SelectedItem)
+                if (photoCountry?.ToLower() == i_SelectedItem?.ToLower())
                 {
                     photosInCountry.Add(photo);
                 }
