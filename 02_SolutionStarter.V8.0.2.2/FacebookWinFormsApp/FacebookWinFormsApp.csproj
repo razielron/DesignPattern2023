@@ -101,7 +101,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="IPhotoManager.cs" />
+    <Compile Include="ICategoryPhotoManager.cs" />
     <Compile Include="ListBoxDataModel.cs" />
     <Compile Include="ListBoxFilterManager.cs" />
     <Compile Include="Program.cs" />
