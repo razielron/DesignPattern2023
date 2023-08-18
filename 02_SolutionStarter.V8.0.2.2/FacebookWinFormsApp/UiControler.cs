@@ -56,7 +56,7 @@ namespace BasicFacebookFeatures
             }
             finally
             {
-                handleNoData(i_ListBoxPosts, allPosts);
+                handleNoData(allPosts);
             }
         }
 
@@ -79,7 +79,7 @@ namespace BasicFacebookFeatures
             }
             finally
             {
-                handleNoData(i_ListBoxLikePages, allPages);
+                handleNoData(allPages);
             }
         }
 
@@ -102,7 +102,7 @@ namespace BasicFacebookFeatures
             }
             finally
             {
-                handleNoData(i_ListBoxCheckIn, allCheckin);
+                handleNoData(allCheckin);
             }
         }
 
@@ -125,7 +125,7 @@ namespace BasicFacebookFeatures
             }
             finally
             {
-                handleNoData(i_ListBoxAlbums, allAlbums);
+                handleNoData(allAlbums);
             }
         }
 
@@ -148,7 +148,7 @@ namespace BasicFacebookFeatures
             }
             finally
             {
-                handleNoData(i_ListBoxGroups, allGroups);
+                handleNoData(allGroups);
             }
         }
 
@@ -171,7 +171,7 @@ namespace BasicFacebookFeatures
             }
             finally
             {
-                handleNoData(i_ListBoxPhotosTaggedIn, allPhotos);
+                handleNoData(allPhotos);
             }
         }
 
@@ -195,7 +195,7 @@ namespace BasicFacebookFeatures
             }
             finally
             {
-                handleNoData(i_ListBox, albums);
+                handleNoData(albums);
             }
         }
 
@@ -207,7 +207,7 @@ namespace BasicFacebookFeatures
             {
                 postsResponse = m_TheLoggedInUser.Posts;
                 m_BestFriendsManager = new BestFriendsManager(postsResponse.ToList());
-                DisplayItemsToCategoryListBox(i_ListBox);
+                DisplayBestFriendsToListBox(i_ListBox);
             }
             catch (Exception ex)
             {
@@ -215,7 +215,7 @@ namespace BasicFacebookFeatures
             }
             finally
             {
-                handleNoData(i_ListBox, postsResponse);
+                handleNoData(postsResponse);
             }
         }
 
@@ -304,13 +304,18 @@ namespace BasicFacebookFeatures
             i_ListBox.DataSource = m_BestFriendsManager.GetLikeAndCommentsStatistics(selectedBestFriend);
         }
 
+        private void DisplayBestFriendsToListBox(ListBox i_ListBox)
+        {
+            i_ListBox.DataSource = m_BestFriendsManager.BestFriends;
+        }
+
         private void initiateListBox(ListBox i_ListBox)
         {
             i_ListBox.DataSource = null;
             i_ListBox.DisplayMember = "DisplayName";
         }
 
-        private void handleNoData<T>(ListBox i_ListBox, FacebookObjectCollection<T> i_FacebookObject)
+        private void handleNoData<T>(FacebookObjectCollection<T> i_FacebookObject)
         {
             if (i_FacebookObject == null || i_FacebookObject.Count == 0)
             {
