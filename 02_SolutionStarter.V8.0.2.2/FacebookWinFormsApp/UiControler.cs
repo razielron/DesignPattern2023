@@ -1,10 +1,8 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
@@ -27,7 +25,8 @@ namespace BasicFacebookFeatures
 
         public void UpdateDetailsAboutUser(Label i_LabelAbout)
         {
-            i_LabelAbout.Text = string.Format("{0} {1}{2}Email: {3}{4}Birth Date: {5}{6}Address: {7}",
+            i_LabelAbout.Text = string.Format(
+                "{0} {1}{2}Email: {3}{4}Birth Date: {5}{6}Address: {7}",
                 m_TheLoggedInUser.FirstName,
                 m_TheLoggedInUser.LastName,
                 Environment.NewLine,
@@ -321,7 +320,7 @@ namespace BasicFacebookFeatures
 
         private ListBoxDataModel<Post> convertPostToListBoxDataModel(Post i_Post)
         {
-            string displayName = "";
+            string displayName = string.Empty;
 
             if (i_Post.Message != null)
             {
@@ -356,7 +355,7 @@ namespace BasicFacebookFeatures
 
         private ListBoxDataModel<Checkin> convertCheckInToListBoxDataModel(Checkin i_CheckIn)
         {
-            string displayName = "";
+            string displayName = string.Empty;
 
             if (i_CheckIn?.Place?.Name != null)
             {
@@ -412,6 +411,5 @@ namespace BasicFacebookFeatures
                 Data = i_Photo,
             };
         }
-        
     }
 }

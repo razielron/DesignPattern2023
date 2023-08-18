@@ -13,18 +13,19 @@ namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
-        LoginResult m_LoginResult;
-        User m_TheLoggedInUser;
-        UiControler m_UiControler;
+        private LoginResult m_LoginResult;
+        private User m_TheLoggedInUser;
+        private UiControler m_UiControler;
         
-
         public FormMain()
         {
             InitializeComponent();
             FacebookService.s_CollectionLimit = 25;
-            comboBoxCategories.Items.AddRange(new string[] {
+            comboBoxCategories.Items.AddRange(new string[] 
+            {
                 Consts.CategoryCountries,
-                Consts.CategoryCreatedDate});
+                Consts.CategoryCreatedDate
+            });
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -42,7 +43,6 @@ namespace BasicFacebookFeatures
             m_LoginResult = FacebookService.Login(
                 /// (This is Desig Patter's App ID. replace it with your own)
                 "274259588558246",
-                /// requested permissions:
                 "email",
                 "user_age_range",
                 "user_birthday",
@@ -53,11 +53,10 @@ namespace BasicFacebookFeatures
                 "user_location",
                 "user_photos",
                 "user_posts"
-                /// add any relevant permissions
                 );
+
             m_TheLoggedInUser = m_LoginResult.LoggedInUser;
             m_UiControler = new UiControler(m_TheLoggedInUser);
-            
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
@@ -181,11 +180,6 @@ namespace BasicFacebookFeatures
         }
        
         private void comboBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            m_UiControler.FetchPhotosPerCategoryAndDisplayToListBox(comboBoxCategories, listBoxItemsOfCategory);
-        }
-
-        private void buttonFetchSortedPhotos_Click(object sender, EventArgs eM)
         {
             m_UiControler.FetchPhotosPerCategoryAndDisplayToListBox(comboBoxCategories, listBoxItemsOfCategory);
         }

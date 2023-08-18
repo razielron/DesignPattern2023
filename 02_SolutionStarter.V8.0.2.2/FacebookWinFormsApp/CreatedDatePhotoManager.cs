@@ -1,11 +1,12 @@
-﻿using FacebookWrapper.ObjectModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
     public class CreatedDatePhotoManager : ICategoryPhotoManager
     {
         private List<Photo> m_AllPhotos;
+
         public List<string> Items { get; private set; }
 
         public CreatedDatePhotoManager(List<Photo> allPhotos)

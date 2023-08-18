@@ -7,7 +7,8 @@ namespace BasicFacebookFeatures
     public class BestFriendsManager
     {
         private List<Post> m_Posts;
-        public List<BestFriend> BestFriends;
+
+        public List<BestFriend> BestFriends { get; }
 
         public BestFriendsManager(List<Post> i_Posts)
         {
@@ -31,52 +32,49 @@ namespace BasicFacebookFeatures
         {
             foreach (Post post in m_Posts)
             {
-                countLikesPerFriend(post, BestFriends);
-                countCommentsPerFriend(post, BestFriends);
+                countLikesPerFriend(post);
+                countCommentsPerFriend(post);
             }
 
             BestFriends.Sort((f1, f2) => f2.TotalPoints.CompareTo(f1.TotalPoints));
         }
 
-        private void countLikesPerFriend(Post post, List<BestFriend> bestFriends)
+        private void countLikesPerFriend(Post i_Post)
         {
-            foreach (User liker in post.LikedBy)
+            foreach (User liker in i_Post.LikedBy)
             {
-                BestFriend bestFriend = bestFriends.FirstOrDefault(f => f.UserId == liker.Id);
-                if (bestFriend == null)
-                {
-                    bestFriend = new BestFriend
-                    {
-                        UserId = liker.Id,
-                        UserName = liker.Name
-                    };
-                    bestFriends.Add(bestFriend);
-                }
-
+                BestFriend bestFriend = addOrGetBestFriend(liker);
+   
                 bestFriend.LikesCounter += 1; 
             }
         }
 
-        private void countCommentsPerFriend(Post post, List<BestFriend> bestFriends)
+        private void countCommentsPerFriend(Post i_Post)
         {
-            foreach (Comment comment in post.Comments)
+            foreach (Comment comment in i_Post.Comments)
             {
                 User commenter = comment.From;
-
-                BestFriend bestFriend = bestFriends.FirstOrDefault(f => f.UserId == commenter.Id);
-                if (bestFriend == null)
-                {
-                    bestFriend = new BestFriend
-                    {
-                        UserId = commenter.Id,
-                        UserName = commenter.Name,
-                        
-                    };
-                    bestFriends.Add(bestFriend);
-                }
-
+                BestFriend bestFriend = addOrGetBestFriend(commenter);
+                
                 bestFriend.CommentsCounter += 1; 
             }
+        }
+
+        private BestFriend addOrGetBestFriend(User i_User)
+        {
+            BestFriend bestFriend = BestFriends.FirstOrDefault(f => f.UserId == i_User.Id);
+
+            if (bestFriend == null)
+            {
+                bestFriend = new BestFriend
+                {
+                    UserId = i_User.Id,
+                    UserName = i_User.Name
+                };
+                BestFriends.Add(bestFriend);
+            }
+
+            return bestFriend;
         }
     }
 }

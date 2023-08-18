@@ -1,9 +1,5 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
@@ -13,7 +9,7 @@ namespace BasicFacebookFeatures
         {
             string countries = Consts.CategoryCountries.ToLower();
             string createdDate = Consts.CategoryCreatedDate.ToLower();
-
+          
             if (i_Category.ToLower() == countries.ToLower())
             {
                 return new CountriesPhotoManager(i_AllPhotos);
