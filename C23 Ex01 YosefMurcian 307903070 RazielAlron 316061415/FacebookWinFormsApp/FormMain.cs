@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Threading;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
+using System.ComponentModel;
 
 namespace BasicFacebookFeatures
 {
@@ -16,17 +13,63 @@ namespace BasicFacebookFeatures
         private LoginResult m_LoginResult;
         private User m_TheLoggedInUser;
         private UiControler m_UiControler;
-        
+        private AppSettings m_AppSettings;
+        private Thread dataFetchThread;
+
         public FormMain()
         {
             InitializeComponent();
             FacebookService.s_CollectionLimit = 25;
+            m_AppSettings = new AppSettings();
+            this.StartPosition = FormStartPosition.Manual;
+         
             comboBoxCategories.Items.AddRange(new string[] 
             {
                 Consts.CategoryCountries,
                 Consts.CategoryCreatedDate
             });
         }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            m_AppSettings = m_AppSettings.FromFileOrDefault();
+            this.Size = m_AppSettings.LastWindowSize;
+            this.WindowState = m_AppSettings.LastWindowState;
+            this.Location = m_AppSettings.LastWindowPoint;
+            this.checkBoxRememberUser.Checked = m_AppSettings.RememberUser;
+
+            if (m_AppSettings.RememberUser && m_AppSettings.LastAccessToken != null)
+            {
+                new Thread(this.autoLogin).Start();
+            }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            m_AppSettings.LastWindowState = this.WindowState;
+            m_AppSettings.LastWindowSize = this.Size;
+            m_AppSettings.LastWindowPoint = this.Location;
+            m_AppSettings.RememberUser = this.checkBoxRememberUser.Checked;
+            m_AppSettings.LastAccessToken = this.m_LoginResult?.AccessToken;
+            m_AppSettings.SaveToFile();
+        }
+
+
+        private void autoLogin()
+        {
+            try
+            {
+                m_LoginResult = FacebookService.Connect(m_AppSettings.LastAccessToken);
+                updateLogginForm();
+            }
+            catch (Exception ex)
+            {
+                /// this is probably because of an AccessToken expiration:
+                this.Invoke((Action)login);
+            }
+        }
+
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -55,17 +98,24 @@ namespace BasicFacebookFeatures
                 "user_posts"
                 );
 
+            updateLogginForm();
+
+        }
+        private void updateLogginForm()
+        {
             m_TheLoggedInUser = m_LoginResult.LoggedInUser;
-            m_UiControler = new UiControler(m_TheLoggedInUser);
+            UiControler.Initialize(m_TheLoggedInUser);
+            m_UiControler = UiControler.Instance;
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
-                buttonLogin.Text = $"Logged in as {m_TheLoggedInUser.Name}";
-                buttonLogin.BackColor = Color.LightGreen;
-                pictureBoxProfile.ImageLocation = m_TheLoggedInUser.PictureNormalURL;
-                m_UiControler.UpdateDetailsAboutUser(labelAbout); 
-                buttonLogin.Enabled = false;
-                buttonLogout.Enabled = true;
+                buttonLogin.Invoke(new Action(() => buttonLogin.Text = $"Logged in as {m_TheLoggedInUser.Name}"));
+
+                buttonLogin.Invoke(new Action(() => buttonLogin.BackColor = Color.LightGreen));
+                pictureBoxProfile.Invoke(new Action(() => pictureBoxProfile.ImageLocation = m_TheLoggedInUser.PictureNormalURL));
+                labelAbout.Invoke(new Action(() => m_UiControler.UpdateDetailsAboutUser(labelAbout)));
+                buttonLogin.Invoke(new Action(() => buttonLogin.Enabled = false));
+                buttonLogout.Invoke(new Action(() => buttonLogout.Enabled = true));
             }
         }
 

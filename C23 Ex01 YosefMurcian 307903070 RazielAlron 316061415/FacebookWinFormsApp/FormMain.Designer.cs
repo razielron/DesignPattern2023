@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -63,17 +62,18 @@
             this.listBoxLikePages = new System.Windows.Forms.ListBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listBoxStatistics = new System.Windows.Forms.ListBox();
-            this.listBoxSortedPhotos = new System.Windows.Forms.ListBox();
-            this.listBoxItemsOfCategory = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.listBoxSortedPhotos = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.listBoxItemsOfCategory = new System.Windows.Forms.ListBox();
             this.pictureBoxCategoryPhoto = new System.Windows.Forms.PictureBox();
             this.comboBoxCategories = new System.Windows.Forms.ComboBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.listBoxStatistics = new System.Windows.Forms.ListBox();
             this.buttonFetchBestFriends = new System.Windows.Forms.Button();
             this.listBoxBestFriends = new System.Windows.Forms.ListBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -92,7 +92,7 @@
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(18, 38);
+            this.buttonLogin.Location = new System.Drawing.Point(18, 24);
             this.buttonLogin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(209, 32);
@@ -104,7 +104,7 @@
             // buttonLogout
             // 
             this.buttonLogout.Enabled = false;
-            this.buttonLogout.Location = new System.Drawing.Point(18, 78);
+            this.buttonLogout.Location = new System.Drawing.Point(18, 59);
             this.buttonLogout.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(209, 32);
@@ -126,6 +126,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkBoxRememberUser);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.panel3);
             this.tabPage1.Controls.Add(this.pictureBoxLikedPages);
@@ -482,38 +483,6 @@
             this.tabPage2.Text = "New Features";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // listBoxStatistics
-            // 
-            this.listBoxStatistics.BackColor = System.Drawing.SystemColors.Info;
-            this.listBoxStatistics.FormattingEnabled = true;
-            this.listBoxStatistics.ItemHeight = 18;
-            this.listBoxStatistics.Location = new System.Drawing.Point(543, 72);
-            this.listBoxStatistics.Name = "listBoxStatistics";
-            this.listBoxStatistics.Size = new System.Drawing.Size(153, 112);
-            this.listBoxStatistics.TabIndex = 93;
-            // 
-            // listBoxSortedPhotos
-            // 
-            this.listBoxSortedPhotos.BackColor = System.Drawing.SystemColors.Info;
-            this.listBoxSortedPhotos.FormattingEnabled = true;
-            this.listBoxSortedPhotos.ItemHeight = 18;
-            this.listBoxSortedPhotos.Location = new System.Drawing.Point(376, 141);
-            this.listBoxSortedPhotos.Name = "listBoxSortedPhotos";
-            this.listBoxSortedPhotos.Size = new System.Drawing.Size(230, 148);
-            this.listBoxSortedPhotos.TabIndex = 4;
-            this.listBoxSortedPhotos.SelectedIndexChanged += new System.EventHandler(this.listBoxSortedPhotos_SelectedIndexChanged);
-            // 
-            // listBoxItemsOfCategory
-            // 
-            this.listBoxItemsOfCategory.BackColor = System.Drawing.SystemColors.Info;
-            this.listBoxItemsOfCategory.FormattingEnabled = true;
-            this.listBoxItemsOfCategory.ItemHeight = 18;
-            this.listBoxItemsOfCategory.Location = new System.Drawing.Point(72, 89);
-            this.listBoxItemsOfCategory.Name = "listBoxItemsOfCategory";
-            this.listBoxItemsOfCategory.Size = new System.Drawing.Size(416, 184);
-            this.listBoxItemsOfCategory.TabIndex = 3;
-            this.listBoxItemsOfCategory.SelectedIndexChanged += new System.EventHandler(this.listBoxItemsOfCategory_SelectedIndexChanged);
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Wheat;
@@ -526,6 +495,38 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(858, 302);
             this.panel2.TabIndex = 92;
+            // 
+            // listBoxSortedPhotos
+            // 
+            this.listBoxSortedPhotos.BackColor = System.Drawing.SystemColors.Info;
+            this.listBoxSortedPhotos.FormattingEnabled = true;
+            this.listBoxSortedPhotos.ItemHeight = 18;
+            this.listBoxSortedPhotos.Location = new System.Drawing.Point(376, 141);
+            this.listBoxSortedPhotos.Name = "listBoxSortedPhotos";
+            this.listBoxSortedPhotos.Size = new System.Drawing.Size(230, 148);
+            this.listBoxSortedPhotos.TabIndex = 4;
+            this.listBoxSortedPhotos.SelectedIndexChanged += new System.EventHandler(this.listBoxSortedPhotos_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(68, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(433, 24);
+            this.label2.TabIndex = 92;
+            this.label2.Text = "Select the way you wish to group your photos";
+            // 
+            // listBoxItemsOfCategory
+            // 
+            this.listBoxItemsOfCategory.BackColor = System.Drawing.SystemColors.Info;
+            this.listBoxItemsOfCategory.FormattingEnabled = true;
+            this.listBoxItemsOfCategory.ItemHeight = 18;
+            this.listBoxItemsOfCategory.Location = new System.Drawing.Point(72, 89);
+            this.listBoxItemsOfCategory.Name = "listBoxItemsOfCategory";
+            this.listBoxItemsOfCategory.Size = new System.Drawing.Size(416, 184);
+            this.listBoxItemsOfCategory.TabIndex = 3;
+            this.listBoxItemsOfCategory.SelectedIndexChanged += new System.EventHandler(this.listBoxItemsOfCategory_SelectedIndexChanged);
             // 
             // pictureBoxCategoryPhoto
             // 
@@ -546,6 +547,38 @@
             this.comboBoxCategories.TabIndex = 2;
             this.comboBoxCategories.Text = "Select Category...";
             this.comboBoxCategories.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategories_SelectedIndexChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Wheat;
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.listBoxStatistics);
+            this.panel4.Controls.Add(this.buttonFetchBestFriends);
+            this.panel4.Controls.Add(this.listBoxBestFriends);
+            this.panel4.Location = new System.Drawing.Point(85, 371);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(858, 267);
+            this.panel4.TabIndex = 94;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(69, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(627, 24);
+            this.label3.TabIndex = 95;
+            this.label3.Text = "See sorted list of your best friends who complements you the most";
+            // 
+            // listBoxStatistics
+            // 
+            this.listBoxStatistics.BackColor = System.Drawing.SystemColors.Info;
+            this.listBoxStatistics.FormattingEnabled = true;
+            this.listBoxStatistics.ItemHeight = 18;
+            this.listBoxStatistics.Location = new System.Drawing.Point(543, 72);
+            this.listBoxStatistics.Name = "listBoxStatistics";
+            this.listBoxStatistics.Size = new System.Drawing.Size(153, 112);
+            this.listBoxStatistics.TabIndex = 93;
             // 
             // buttonFetchBestFriends
             // 
@@ -569,37 +602,15 @@
             this.listBoxBestFriends.TabIndex = 88;
             this.listBoxBestFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxBestFriends_SelectedIndexChanged);
             // 
-            // panel4
+            // checkBoxRememberUser
             // 
-            this.panel4.BackColor = System.Drawing.Color.Wheat;
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.listBoxStatistics);
-            this.panel4.Controls.Add(this.buttonFetchBestFriends);
-            this.panel4.Controls.Add(this.listBoxBestFriends);
-            this.panel4.Location = new System.Drawing.Point(85, 371);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(858, 267);
-            this.panel4.TabIndex = 94;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(68, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(433, 24);
-            this.label2.TabIndex = 92;
-            this.label2.Text = "Select the way you wish to group your photos";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(69, 15);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(627, 24);
-            this.label3.TabIndex = 95;
-            this.label3.Text = "See sorted list of your best friends who complements you the most";
+            this.checkBoxRememberUser.AutoSize = true;
+            this.checkBoxRememberUser.Location = new System.Drawing.Point(18, 96);
+            this.checkBoxRememberUser.Name = "checkBoxRememberUser";
+            this.checkBoxRememberUser.Size = new System.Drawing.Size(126, 22);
+            this.checkBoxRememberUser.TabIndex = 101;
+            this.checkBoxRememberUser.Text = "Remember Me";
+            this.checkBoxRememberUser.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -682,6 +693,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox checkBoxRememberUser;
     }
 }
 

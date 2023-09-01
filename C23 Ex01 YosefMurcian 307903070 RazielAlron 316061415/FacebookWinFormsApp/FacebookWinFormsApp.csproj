@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings.cs" />
     <Compile Include="BestFriend.cs" />
     <Compile Include="BestFriendsManager.cs" />
     <Compile Include="CategoryPhotoManagerFactory.cs" />

@@ -6,9 +6,12 @@ using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
-    public class UiControler
+    public sealed class UiControler
     {
-        private User m_TheLoggedInUser;
+        private static readonly object sr_Lock = new object();
+        private static User m_TheLoggedInUserInitValue;
+        private static User m_TheLoggedInUser;
+        private static UiControler s_Instance = null;
         private ListBoxFilterManager<Post> m_PostsFilterManager;
         private ListBoxFilterManager<Page> m_LikedPagesFilterManager;
         private ListBoxFilterManager<Checkin> m_CheckInFilterManager;
@@ -18,9 +21,38 @@ namespace BasicFacebookFeatures
         private ICategoryPhotoManager m_CategoryPhotoManager;
         private BestFriendsManager m_BestFriendsManager;
 
-        public UiControler(User i_TheLoggedInUser)
+        private UiControler(User i_TheLoggedInUser)
         {
             m_TheLoggedInUser = i_TheLoggedInUser;
+        }
+
+        public static void Initialize(User i_TheLoggedInUser)
+        {
+            if(s_Instance != null)
+            {
+                throw new InvalidOperationException("UI controler was already created");
+            }
+
+            m_TheLoggedInUserInitValue = i_TheLoggedInUser;
+        }
+        
+        public static UiControler Instance
+        {
+            get
+            {
+                if(s_Instance == null)
+                {
+                    lock (sr_Lock)
+                    {
+                        if(s_Instance == null)
+                        {
+                            s_Instance = new UiControler(m_TheLoggedInUserInitValue);
+                        }
+                    }
+                }
+
+                return s_Instance;
+            }
         }
 
         public void UpdateDetailsAboutUser(Label i_LabelAbout)
