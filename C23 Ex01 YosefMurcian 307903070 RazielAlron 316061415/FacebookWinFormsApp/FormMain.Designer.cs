@@ -27,10 +27,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label aboutLabel;
+            System.Windows.Forms.Label birthdayLabel;
+            System.Windows.Forms.Label emailLabel;
+            System.Windows.Forms.Label firstNameLabel;
+            System.Windows.Forms.Label imageNormalLabel;
+            System.Windows.Forms.Label lastNameLabel;
+            System.Windows.Forms.Label localeLabel;
+            System.Windows.Forms.Label middleNameLabel;
+            System.Windows.Forms.Label religionLabel;
+            System.Windows.Forms.Label updateTimeLabel;
+            System.Windows.Forms.Label verfiedLabel;
+            System.Windows.Forms.Label createdTimeLabel;
+            System.Windows.Forms.Label descriptionLabel;
+            System.Windows.Forms.Label messageLabel;
+            System.Windows.Forms.Label nameLabel;
+            System.Windows.Forms.Label updateTimeLabel1;
+            System.Windows.Forms.Label imageNormalLabel1;
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.listBoxPostComments = new System.Windows.Forms.ListBox();
@@ -73,7 +92,48 @@
             this.listBoxStatistics = new System.Windows.Forms.ListBox();
             this.buttonFetchBestFriends = new System.Windows.Forms.Button();
             this.listBoxBestFriends = new System.Windows.Forms.ListBox();
-            this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonFetchPostsDataBinding = new System.Windows.Forms.Button();
+            this.listBoxPostDataBinding = new System.Windows.Forms.ListBox();
+            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.createdTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.messageTextBox = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.updateTimeDateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.aboutTextBox = new System.Windows.Forms.TextBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.birthdayTextBox = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.imageNormalPictureBox = new System.Windows.Forms.PictureBox();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.localeTextBox = new System.Windows.Forms.TextBox();
+            this.middleNameTextBox = new System.Windows.Forms.TextBox();
+            this.religionTextBox = new System.Windows.Forms.TextBox();
+            this.updateTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.verfiedCheckBox = new System.Windows.Forms.CheckBox();
+            this.checkinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.imageNormalPictureBox1 = new System.Windows.Forms.PictureBox();
+            aboutLabel = new System.Windows.Forms.Label();
+            birthdayLabel = new System.Windows.Forms.Label();
+            emailLabel = new System.Windows.Forms.Label();
+            firstNameLabel = new System.Windows.Forms.Label();
+            imageNormalLabel = new System.Windows.Forms.Label();
+            lastNameLabel = new System.Windows.Forms.Label();
+            localeLabel = new System.Windows.Forms.Label();
+            middleNameLabel = new System.Windows.Forms.Label();
+            religionLabel = new System.Windows.Forms.Label();
+            updateTimeLabel = new System.Windows.Forms.Label();
+            verfiedLabel = new System.Windows.Forms.Label();
+            createdTimeLabel = new System.Windows.Forms.Label();
+            descriptionLabel = new System.Windows.Forms.Label();
+            messageLabel = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
+            updateTimeLabel1 = new System.Windows.Forms.Label();
+            imageNormalLabel1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -88,7 +148,159 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCategoryPhoto)).BeginInit();
             this.panel4.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // aboutLabel
+            // 
+            aboutLabel.AutoSize = true;
+            aboutLabel.Location = new System.Drawing.Point(26, 169);
+            aboutLabel.Name = "aboutLabel";
+            aboutLabel.Size = new System.Drawing.Size(50, 18);
+            aboutLabel.TabIndex = 0;
+            aboutLabel.Text = "About:";
+            // 
+            // birthdayLabel
+            // 
+            birthdayLabel.AutoSize = true;
+            birthdayLabel.Location = new System.Drawing.Point(26, 199);
+            birthdayLabel.Name = "birthdayLabel";
+            birthdayLabel.Size = new System.Drawing.Size(65, 18);
+            birthdayLabel.TabIndex = 2;
+            birthdayLabel.Text = "Birthday:";
+            // 
+            // emailLabel
+            // 
+            emailLabel.AutoSize = true;
+            emailLabel.Location = new System.Drawing.Point(26, 229);
+            emailLabel.Name = "emailLabel";
+            emailLabel.Size = new System.Drawing.Size(49, 18);
+            emailLabel.TabIndex = 4;
+            emailLabel.Text = "Email:";
+            // 
+            // firstNameLabel
+            // 
+            firstNameLabel.AutoSize = true;
+            firstNameLabel.Location = new System.Drawing.Point(26, 259);
+            firstNameLabel.Name = "firstNameLabel";
+            firstNameLabel.Size = new System.Drawing.Size(85, 18);
+            firstNameLabel.TabIndex = 6;
+            firstNameLabel.Text = "First Name:";
+            // 
+            // imageNormalLabel
+            // 
+            imageNormalLabel.AutoSize = true;
+            imageNormalLabel.Location = new System.Drawing.Point(29, 38);
+            imageNormalLabel.Name = "imageNormalLabel";
+            imageNormalLabel.Size = new System.Drawing.Size(108, 18);
+            imageNormalLabel.TabIndex = 8;
+            imageNormalLabel.Text = "Profile Pictures";
+            // 
+            // lastNameLabel
+            // 
+            lastNameLabel.AutoSize = true;
+            lastNameLabel.Location = new System.Drawing.Point(26, 289);
+            lastNameLabel.Name = "lastNameLabel";
+            lastNameLabel.Size = new System.Drawing.Size(84, 18);
+            lastNameLabel.TabIndex = 10;
+            lastNameLabel.Text = "Last Name:";
+            // 
+            // localeLabel
+            // 
+            localeLabel.AutoSize = true;
+            localeLabel.Location = new System.Drawing.Point(26, 319);
+            localeLabel.Name = "localeLabel";
+            localeLabel.Size = new System.Drawing.Size(56, 18);
+            localeLabel.TabIndex = 12;
+            localeLabel.Text = "Locale:";
+            // 
+            // middleNameLabel
+            // 
+            middleNameLabel.AutoSize = true;
+            middleNameLabel.Location = new System.Drawing.Point(26, 349);
+            middleNameLabel.Name = "middleNameLabel";
+            middleNameLabel.Size = new System.Drawing.Size(99, 18);
+            middleNameLabel.TabIndex = 14;
+            middleNameLabel.Text = "Middle Name:";
+            // 
+            // religionLabel
+            // 
+            religionLabel.AutoSize = true;
+            religionLabel.Location = new System.Drawing.Point(26, 379);
+            religionLabel.Name = "religionLabel";
+            religionLabel.Size = new System.Drawing.Size(65, 18);
+            religionLabel.TabIndex = 16;
+            religionLabel.Text = "Religion:";
+            // 
+            // updateTimeLabel
+            // 
+            updateTimeLabel.AutoSize = true;
+            updateTimeLabel.Location = new System.Drawing.Point(26, 410);
+            updateTimeLabel.Name = "updateTimeLabel";
+            updateTimeLabel.Size = new System.Drawing.Size(96, 18);
+            updateTimeLabel.TabIndex = 18;
+            updateTimeLabel.Text = "Update Time:";
+            // 
+            // verfiedLabel
+            // 
+            verfiedLabel.AutoSize = true;
+            verfiedLabel.Location = new System.Drawing.Point(26, 441);
+            verfiedLabel.Name = "verfiedLabel";
+            verfiedLabel.Size = new System.Drawing.Size(57, 18);
+            verfiedLabel.TabIndex = 20;
+            verfiedLabel.Text = "Verfied:";
+            // 
+            // createdTimeLabel
+            // 
+            createdTimeLabel.AutoSize = true;
+            createdTimeLabel.Location = new System.Drawing.Point(47, 111);
+            createdTimeLabel.Name = "createdTimeLabel";
+            createdTimeLabel.Size = new System.Drawing.Size(101, 18);
+            createdTimeLabel.TabIndex = 2;
+            createdTimeLabel.Text = "Created Time:";
+            // 
+            // descriptionLabel
+            // 
+            descriptionLabel.AutoSize = true;
+            descriptionLabel.Location = new System.Drawing.Point(47, 140);
+            descriptionLabel.Name = "descriptionLabel";
+            descriptionLabel.Size = new System.Drawing.Size(87, 18);
+            descriptionLabel.TabIndex = 4;
+            descriptionLabel.Text = "Description:";
+            // 
+            // messageLabel
+            // 
+            messageLabel.AutoSize = true;
+            messageLabel.Location = new System.Drawing.Point(47, 170);
+            messageLabel.Name = "messageLabel";
+            messageLabel.Size = new System.Drawing.Size(73, 18);
+            messageLabel.TabIndex = 6;
+            messageLabel.Text = "Message:";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(47, 200);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(52, 18);
+            nameLabel.TabIndex = 8;
+            nameLabel.Text = "Name:";
+            // 
+            // updateTimeLabel1
+            // 
+            updateTimeLabel1.AutoSize = true;
+            updateTimeLabel1.Location = new System.Drawing.Point(47, 231);
+            updateTimeLabel1.Name = "updateTimeLabel1";
+            updateTimeLabel1.Size = new System.Drawing.Size(96, 18);
+            updateTimeLabel1.TabIndex = 10;
+            updateTimeLabel1.Text = "Update Time:";
             // 
             // buttonLogin
             // 
@@ -117,6 +329,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -158,6 +371,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Basic Features";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRememberUser
+            // 
+            this.checkBoxRememberUser.AutoSize = true;
+            this.checkBoxRememberUser.Location = new System.Drawing.Point(18, 96);
+            this.checkBoxRememberUser.Name = "checkBoxRememberUser";
+            this.checkBoxRememberUser.Size = new System.Drawing.Size(126, 22);
+            this.checkBoxRememberUser.TabIndex = 101;
+            this.checkBoxRememberUser.Text = "Remember Me";
+            this.checkBoxRememberUser.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -602,15 +825,252 @@
             this.listBoxBestFriends.TabIndex = 88;
             this.listBoxBestFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxBestFriends_SelectedIndexChanged);
             // 
-            // checkBoxRememberUser
+            // tabPage3
             // 
-            this.checkBoxRememberUser.AutoSize = true;
-            this.checkBoxRememberUser.Location = new System.Drawing.Point(18, 96);
-            this.checkBoxRememberUser.Name = "checkBoxRememberUser";
-            this.checkBoxRememberUser.Size = new System.Drawing.Size(126, 22);
-            this.checkBoxRememberUser.TabIndex = 101;
-            this.checkBoxRememberUser.Text = "Remember Me";
-            this.checkBoxRememberUser.UseVisualStyleBackColor = true;
+            this.tabPage3.Controls.Add(this.panel6);
+            this.tabPage3.Controls.Add(this.buttonFetchPostsDataBinding);
+            this.tabPage3.Controls.Add(this.listBoxPostDataBinding);
+            this.tabPage3.Controls.Add(this.panel5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 27);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1235, 666);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Data Binding Feature";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // buttonFetchPostsDataBinding
+            // 
+            this.buttonFetchPostsDataBinding.BackColor = System.Drawing.Color.MintCream;
+            this.buttonFetchPostsDataBinding.Location = new System.Drawing.Point(671, 38);
+            this.buttonFetchPostsDataBinding.Name = "buttonFetchPostsDataBinding";
+            this.buttonFetchPostsDataBinding.Size = new System.Drawing.Size(178, 30);
+            this.buttonFetchPostsDataBinding.TabIndex = 62;
+            this.buttonFetchPostsDataBinding.Text = "Fetch Posts";
+            this.buttonFetchPostsDataBinding.UseVisualStyleBackColor = false;
+            this.buttonFetchPostsDataBinding.Click += new System.EventHandler(this.buttonFetchPostsDataBinding_Click);
+            // 
+            // listBoxPostDataBinding
+            // 
+            this.listBoxPostDataBinding.BackColor = System.Drawing.SystemColors.Info;
+            this.listBoxPostDataBinding.DataSource = this.postBindingSource;
+            this.listBoxPostDataBinding.FormattingEnabled = true;
+            this.listBoxPostDataBinding.ItemHeight = 18;
+            this.listBoxPostDataBinding.Location = new System.Drawing.Point(585, 74);
+            this.listBoxPostDataBinding.Name = "listBoxPostDataBinding";
+            this.listBoxPostDataBinding.Size = new System.Drawing.Size(412, 220);
+            this.listBoxPostDataBinding.TabIndex = 61;
+            // 
+            // postBindingSource
+            // 
+            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.NavajoWhite;
+            this.panel6.Controls.Add(imageNormalLabel1);
+            this.panel6.Controls.Add(this.imageNormalPictureBox1);
+            this.panel6.Controls.Add(createdTimeLabel);
+            this.panel6.Controls.Add(this.createdTimeDateTimePicker);
+            this.panel6.Controls.Add(descriptionLabel);
+            this.panel6.Controls.Add(this.descriptionTextBox);
+            this.panel6.Controls.Add(messageLabel);
+            this.panel6.Controls.Add(this.messageTextBox);
+            this.panel6.Controls.Add(nameLabel);
+            this.panel6.Controls.Add(this.nameTextBox);
+            this.panel6.Controls.Add(updateTimeLabel1);
+            this.panel6.Controls.Add(this.updateTimeDateTimePicker1);
+            this.panel6.Location = new System.Drawing.Point(721, 256);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(421, 302);
+            this.panel6.TabIndex = 1;
+            // 
+            // createdTimeDateTimePicker
+            // 
+            this.createdTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "CreatedTime", true));
+            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(154, 107);
+            this.createdTimeDateTimePicker.Name = "createdTimeDateTimePicker";
+            this.createdTimeDateTimePicker.Size = new System.Drawing.Size(200, 24);
+            this.createdTimeDateTimePicker.TabIndex = 3;
+            // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Description", true));
+            this.descriptionTextBox.Location = new System.Drawing.Point(154, 137);
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(200, 24);
+            this.descriptionTextBox.TabIndex = 5;
+            // 
+            // messageTextBox
+            // 
+            this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Message", true));
+            this.messageTextBox.Location = new System.Drawing.Point(154, 167);
+            this.messageTextBox.Name = "messageTextBox";
+            this.messageTextBox.Size = new System.Drawing.Size(200, 24);
+            this.messageTextBox.TabIndex = 7;
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Name", true));
+            this.nameTextBox.Location = new System.Drawing.Point(154, 197);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(200, 24);
+            this.nameTextBox.TabIndex = 9;
+            // 
+            // updateTimeDateTimePicker1
+            // 
+            this.updateTimeDateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "UpdateTime", true));
+            this.updateTimeDateTimePicker1.Location = new System.Drawing.Point(154, 227);
+            this.updateTimeDateTimePicker1.Name = "updateTimeDateTimePicker1";
+            this.updateTimeDateTimePicker1.Size = new System.Drawing.Size(200, 24);
+            this.updateTimeDateTimePicker1.TabIndex = 11;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.NavajoWhite;
+            this.panel5.Controls.Add(aboutLabel);
+            this.panel5.Controls.Add(this.aboutTextBox);
+            this.panel5.Controls.Add(birthdayLabel);
+            this.panel5.Controls.Add(this.birthdayTextBox);
+            this.panel5.Controls.Add(emailLabel);
+            this.panel5.Controls.Add(this.emailTextBox);
+            this.panel5.Controls.Add(firstNameLabel);
+            this.panel5.Controls.Add(this.firstNameTextBox);
+            this.panel5.Controls.Add(imageNormalLabel);
+            this.panel5.Controls.Add(this.imageNormalPictureBox);
+            this.panel5.Controls.Add(lastNameLabel);
+            this.panel5.Controls.Add(this.lastNameTextBox);
+            this.panel5.Controls.Add(localeLabel);
+            this.panel5.Controls.Add(this.localeTextBox);
+            this.panel5.Controls.Add(middleNameLabel);
+            this.panel5.Controls.Add(this.middleNameTextBox);
+            this.panel5.Controls.Add(religionLabel);
+            this.panel5.Controls.Add(this.religionTextBox);
+            this.panel5.Controls.Add(updateTimeLabel);
+            this.panel5.Controls.Add(this.updateTimeDateTimePicker);
+            this.panel5.Controls.Add(verfiedLabel);
+            this.panel5.Controls.Add(this.verfiedCheckBox);
+            this.panel5.Location = new System.Drawing.Point(95, 74);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(389, 568);
+            this.panel5.TabIndex = 0;
+            // 
+            // aboutTextBox
+            // 
+            this.aboutTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "About", true));
+            this.aboutTextBox.Location = new System.Drawing.Point(137, 166);
+            this.aboutTextBox.Name = "aboutTextBox";
+            this.aboutTextBox.Size = new System.Drawing.Size(225, 24);
+            this.aboutTextBox.TabIndex = 1;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
+            // 
+            // birthdayTextBox
+            // 
+            this.birthdayTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Birthday", true));
+            this.birthdayTextBox.Location = new System.Drawing.Point(137, 196);
+            this.birthdayTextBox.Name = "birthdayTextBox";
+            this.birthdayTextBox.Size = new System.Drawing.Size(225, 24);
+            this.birthdayTextBox.TabIndex = 3;
+            // 
+            // emailTextBox
+            // 
+            this.emailTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Email", true));
+            this.emailTextBox.Location = new System.Drawing.Point(137, 226);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(225, 24);
+            this.emailTextBox.TabIndex = 5;
+            // 
+            // firstNameTextBox
+            // 
+            this.firstNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "FirstName", true));
+            this.firstNameTextBox.Location = new System.Drawing.Point(137, 256);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(225, 24);
+            this.firstNameTextBox.TabIndex = 7;
+            // 
+            // imageNormalPictureBox
+            // 
+            this.imageNormalPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageNormal", true));
+            this.imageNormalPictureBox.Location = new System.Drawing.Point(173, 38);
+            this.imageNormalPictureBox.Name = "imageNormalPictureBox";
+            this.imageNormalPictureBox.Size = new System.Drawing.Size(141, 104);
+            this.imageNormalPictureBox.TabIndex = 9;
+            this.imageNormalPictureBox.TabStop = false;
+            // 
+            // lastNameTextBox
+            // 
+            this.lastNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "LastName", true));
+            this.lastNameTextBox.Location = new System.Drawing.Point(137, 286);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(225, 24);
+            this.lastNameTextBox.TabIndex = 11;
+            // 
+            // localeTextBox
+            // 
+            this.localeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Locale", true));
+            this.localeTextBox.Location = new System.Drawing.Point(137, 316);
+            this.localeTextBox.Name = "localeTextBox";
+            this.localeTextBox.Size = new System.Drawing.Size(225, 24);
+            this.localeTextBox.TabIndex = 13;
+            // 
+            // middleNameTextBox
+            // 
+            this.middleNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "MiddleName", true));
+            this.middleNameTextBox.Location = new System.Drawing.Point(137, 346);
+            this.middleNameTextBox.Name = "middleNameTextBox";
+            this.middleNameTextBox.Size = new System.Drawing.Size(225, 24);
+            this.middleNameTextBox.TabIndex = 15;
+            // 
+            // religionTextBox
+            // 
+            this.religionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Religion", true));
+            this.religionTextBox.Location = new System.Drawing.Point(137, 376);
+            this.religionTextBox.Name = "religionTextBox";
+            this.religionTextBox.Size = new System.Drawing.Size(225, 24);
+            this.religionTextBox.TabIndex = 17;
+            // 
+            // updateTimeDateTimePicker
+            // 
+            this.updateTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.userBindingSource, "UpdateTime", true));
+            this.updateTimeDateTimePicker.Location = new System.Drawing.Point(137, 406);
+            this.updateTimeDateTimePicker.Name = "updateTimeDateTimePicker";
+            this.updateTimeDateTimePicker.Size = new System.Drawing.Size(225, 24);
+            this.updateTimeDateTimePicker.TabIndex = 19;
+            // 
+            // verfiedCheckBox
+            // 
+            this.verfiedCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.userBindingSource, "Verfied", true));
+            this.verfiedCheckBox.Location = new System.Drawing.Point(137, 436);
+            this.verfiedCheckBox.Name = "verfiedCheckBox";
+            this.verfiedCheckBox.Size = new System.Drawing.Size(225, 48);
+            this.verfiedCheckBox.TabIndex = 21;
+            this.verfiedCheckBox.Text = "checkBox1";
+            this.verfiedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // checkinsBindingSource
+            // 
+            this.checkinsBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Checkin);
+            // 
+            // imageNormalLabel1
+            // 
+            imageNormalLabel1.AutoSize = true;
+            imageNormalLabel1.Location = new System.Drawing.Point(42, 18);
+            imageNormalLabel1.Name = "imageNormalLabel1";
+            imageNormalLabel1.Size = new System.Drawing.Size(105, 18);
+            imageNormalLabel1.TabIndex = 12;
+            imageNormalLabel1.Text = "Image Normal:";
+            // 
+            // imageNormalPictureBox1
+            // 
+            this.imageNormalPictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.postBindingSource, "Place.ImageNormal", true));
+            this.imageNormalPictureBox1.Location = new System.Drawing.Point(195, 18);
+            this.imageNormalPictureBox1.Name = "imageNormalPictureBox1";
+            this.imageNormalPictureBox1.Size = new System.Drawing.Size(100, 77);
+            this.imageNormalPictureBox1.TabIndex = 13;
+            this.imageNormalPictureBox1.TabStop = false;
             // 
             // FormMain
             // 
@@ -641,6 +1101,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCategoryPhoto)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -694,6 +1164,31 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkBoxRememberUser;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.TextBox aboutTextBox;
+        private System.Windows.Forms.TextBox birthdayTextBox;
+        private System.Windows.Forms.TextBox emailTextBox;
+        private System.Windows.Forms.TextBox firstNameTextBox;
+        private System.Windows.Forms.PictureBox imageNormalPictureBox;
+        private System.Windows.Forms.TextBox lastNameTextBox;
+        private System.Windows.Forms.TextBox localeTextBox;
+        private System.Windows.Forms.TextBox middleNameTextBox;
+        private System.Windows.Forms.TextBox religionTextBox;
+        private System.Windows.Forms.DateTimePicker updateTimeDateTimePicker;
+        private System.Windows.Forms.CheckBox verfiedCheckBox;
+        private System.Windows.Forms.ListBox listBoxPostDataBinding;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button buttonFetchPostsDataBinding;
+        private System.Windows.Forms.BindingSource postBindingSource;
+        private System.Windows.Forms.DateTimePicker createdTimeDateTimePicker;
+        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.TextBox messageTextBox;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.DateTimePicker updateTimeDateTimePicker1;
+        private System.Windows.Forms.PictureBox imageNormalPictureBox1;
+        private System.Windows.Forms.BindingSource checkinsBindingSource;
     }
 }
 

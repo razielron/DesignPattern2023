@@ -104,6 +104,7 @@ namespace BasicFacebookFeatures
         private void updateLogginForm()
         {
             m_TheLoggedInUser = m_LoginResult.LoggedInUser;
+            userBindingSource.DataSource = m_TheLoggedInUser;
             UiControler.Initialize(m_TheLoggedInUser);
             m_UiControler = UiControler.Instance;
 
@@ -249,5 +250,17 @@ namespace BasicFacebookFeatures
             Photo selectedPhoto = (Photo)listBoxSortedPhotos.SelectedItem;
             m_UiControler.DisplayImageInPictureBox(pictureBoxCategoryPhoto, selectedPhoto?.PictureNormalURL);
         }
+
+        private void buttonFetchPostsDataBinding_Click(object sender, EventArgs e)
+        {
+            postBindingSource.DataSource = m_TheLoggedInUser.Posts;
+        }
+
+        //private void listBoxPostDataBinding_SelectedIndexChanged_1(object sender, EventArgs e)
+        //{
+        //    //Post selectedPost = listBoxPostDataBinding.SelectedItem as Post;
+        //    //postBindingSource.DataSource = selectedPost;
+        //}
+
     }
 }
