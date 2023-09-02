@@ -62,6 +62,7 @@ namespace BasicFacebookFeatures
             {
                 m_LoginResult = FacebookService.Connect(m_AppSettings.LastAccessToken);
                 updateLogginForm();
+                fetchAllData();
             }
             catch (Exception ex)
             {
@@ -100,7 +101,16 @@ namespace BasicFacebookFeatures
                 );
 
             updateLogginForm();
+            fetchAllData();
+        }
 
+        private void fetchAllData()
+        {
+            new Thread(() => m_UiControler.FetchAlbumsAndDisplayToListBox(listBoxAlbums)).Start();
+            new Thread(() => m_UiControler.FetchPhotosTaggedInAndDisplayToListBox(listBoxPhotosTaggedIn)).Start();
+            new Thread(() => m_UiControler.FetchLikedPagesAndDisplayToListBox(listBoxLikePages)).Start();
+            new Thread(() => m_UiControler.FetchCheckInAndDisplayToListBox(listBoxCheckIn)).Start();
+            new Thread(() => m_UiControler.FetchPostsAndDisplayToListBox(listBoxPosts)).Start();
         }
 
         private void updateLogginForm()
@@ -112,12 +122,12 @@ namespace BasicFacebookFeatures
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
-                buttonLogin.Invoke(new Action(() => buttonLogin.Text = $"Logged in as {m_TheLoggedInUser.Name}"));
-                buttonLogin.Invoke(new Action(() => buttonLogin.BackColor = Color.LightGreen));
-                pictureBoxProfile.Invoke(new Action(() => pictureBoxProfile.ImageLocation = m_TheLoggedInUser.PictureNormalURL));
+                buttonLogin.Text = $"Logged in as {m_TheLoggedInUser.Name}";
+                buttonLogin.BackColor = Color.LightGreen;
+                pictureBoxProfile.ImageLocation = m_TheLoggedInUser.PictureNormalURL;
                 labelAbout.Invoke(new Action(() => m_UiControler.UpdateDetailsAboutUser(labelAbout)));
-                buttonLogin.Invoke(new Action(() => buttonLogin.Enabled = false));
-                buttonLogout.Invoke(new Action(() => buttonLogout.Enabled = true));
+                buttonLogin.Enabled = false;
+                buttonLogout.Enabled = true;
             }
         }
 

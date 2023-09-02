@@ -69,7 +69,7 @@ namespace BasicFacebookFeatures
                 m_TheLoggedInUser.Location);
         }
 
-        public void FetchPostsAndDisplayToListBox(ListBox i_ListBoxPosts)
+        public void FetchPostsAndDisplayToListBox(ListBoxProxy i_ListBoxPosts)
         {
             FacebookObjectCollection<Post> allPosts = null;
 
@@ -92,7 +92,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public void FetchLikedPagesAndDisplayToListBox(ListBox i_ListBoxLikePages)
+        public void FetchLikedPagesAndDisplayToListBox(ListBoxProxy i_ListBoxLikePages)
         {
             FacebookObjectCollection<Page> allPages = null;
 
@@ -115,7 +115,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public void FetchCheckInAndDisplayToListBox(ListBox i_ListBoxCheckIn)
+        public void FetchCheckInAndDisplayToListBox(ListBoxProxy i_ListBoxCheckIn)
         {
             FacebookObjectCollection<Checkin> allCheckin = null;
 
@@ -138,7 +138,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public void FetchAlbumsAndDisplayToListBox(ListBox i_ListBoxAlbums)
+        public void FetchAlbumsAndDisplayToListBox(ListBoxProxy i_ListBoxAlbums)
         {
             FacebookObjectCollection<Album> allAlbums = null;
 
@@ -161,7 +161,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public void FetchGroupsAndDisplayToListBox(ListBox i_ListBoxGroups)
+        public void FetchGroupsAndDisplayToListBox(ListBoxProxy i_ListBoxGroups)
         {
             FacebookObjectCollection<Group> allGroups = null;
 
@@ -184,7 +184,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public void FetchPhotosTaggedInAndDisplayToListBox(ListBox i_ListBoxPhotosTaggedIn)
+        public void FetchPhotosTaggedInAndDisplayToListBox(ListBoxProxy i_ListBoxPhotosTaggedIn)
         {
             FacebookObjectCollection<Photo> allPhotos = null;
 
@@ -262,32 +262,32 @@ namespace BasicFacebookFeatures
             i_ListBox.DataSource = m_CategoryPhotoManager.Items;
         }
 
-        public void DisplayPostsToListBox(ListBox i_ListBox, string i_Filter)
+        public void DisplayPostsToListBox(ListBoxProxy i_ListBox, string i_Filter)
         {
             i_ListBox.DataSource = m_PostsFilterManager.FilterData(i_Filter);
         }
 
-        public void DisplayLikedPagesToListBox(ListBox i_ListBox, string i_Filter)
+        public void DisplayLikedPagesToListBox(ListBoxProxy i_ListBox, string i_Filter)
         {
             i_ListBox.DataSource = m_LikedPagesFilterManager.FilterData(i_Filter);
         }
 
-        public void DisplayCheckInToListBox(ListBox i_ListBox, string i_Filter)
+        public void DisplayCheckInToListBox(ListBoxProxy i_ListBox, string i_Filter)
         {
             i_ListBox.DataSource = m_CheckInFilterManager.FilterData(i_Filter);
         }
 
-        public void DisplayAlbumsToListBox(ListBox i_ListBox, string i_Filter)
+        public void DisplayAlbumsToListBox(ListBoxProxy i_ListBox, string i_Filter)
         {
             i_ListBox.DataSource = m_AlbumsFilterManager.FilterData(i_Filter);
         }
 
-        public void DisplayGroupsToListBox(ListBox i_ListBox, string i_Filter)
+        public void DisplayGroupsToListBox(ListBoxProxy i_ListBox, string i_Filter)
         {
             i_ListBox.DataSource = m_GroupsFilterManager.FilterData(i_Filter);
         }
 
-        public void DisplayPhotosTaggedInToListBox(ListBox i_ListBox, string i_Filter)
+        public void DisplayPhotosTaggedInToListBox(ListBoxProxy i_ListBox, string i_Filter)
         {
             i_ListBox.DataSource = m_PhotosTaggedInFilterManager.FilterData(i_Filter);
         }
@@ -341,7 +341,7 @@ namespace BasicFacebookFeatures
             i_ListBox.DataSource = m_BestFriendsManager.BestFriends;
         }
 
-        private void initiateListBox(ListBox i_ListBox)
+        private void initiateListBox(ListBoxProxy i_ListBox)
         {
             i_ListBox.DataSource = null;
             i_ListBox.DisplayMember = "DisplayName";

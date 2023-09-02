@@ -92,6 +92,9 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="BestFriend.cs" />
     <Compile Include="BestFriendsManager.cs" />
+    <Compile Include="ButtonProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CategoryPhotoManagerFactory.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="CountriesPhotoManager.cs" />
@@ -105,6 +108,12 @@
     <Compile Include="ICategoryPhotoManager.cs" />
     <Compile Include="ListBoxDataModel.cs" />
     <Compile Include="ListBoxFilterManager.cs" />
+    <Compile Include="ListBoxProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PictureBoxProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UiControler.cs" />
