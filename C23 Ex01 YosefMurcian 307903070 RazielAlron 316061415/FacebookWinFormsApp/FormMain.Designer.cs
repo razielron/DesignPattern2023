@@ -40,7 +40,6 @@
             System.Windows.Forms.Label updateTimeLabel;
             System.Windows.Forms.Label verfiedLabel;
             System.Windows.Forms.Label createdTimeLabel;
-            System.Windows.Forms.Label descriptionLabel;
             System.Windows.Forms.Label messageLabel;
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label updateTimeLabel1;
@@ -98,7 +97,6 @@
             this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.createdTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.messageTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.updateTimeDateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -129,7 +127,6 @@
             updateTimeLabel = new System.Windows.Forms.Label();
             verfiedLabel = new System.Windows.Forms.Label();
             createdTimeLabel = new System.Windows.Forms.Label();
-            descriptionLabel = new System.Windows.Forms.Label();
             messageLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             updateTimeLabel1 = new System.Windows.Forms.Label();
@@ -260,25 +257,16 @@
             // createdTimeLabel
             // 
             createdTimeLabel.AutoSize = true;
-            createdTimeLabel.Location = new System.Drawing.Point(47, 111);
+            createdTimeLabel.Location = new System.Drawing.Point(48, 267);
             createdTimeLabel.Name = "createdTimeLabel";
             createdTimeLabel.Size = new System.Drawing.Size(101, 18);
             createdTimeLabel.TabIndex = 2;
             createdTimeLabel.Text = "Created Time:";
             // 
-            // descriptionLabel
-            // 
-            descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new System.Drawing.Point(47, 140);
-            descriptionLabel.Name = "descriptionLabel";
-            descriptionLabel.Size = new System.Drawing.Size(87, 18);
-            descriptionLabel.TabIndex = 4;
-            descriptionLabel.Text = "Description:";
-            // 
             // messageLabel
             // 
             messageLabel.AutoSize = true;
-            messageLabel.Location = new System.Drawing.Point(47, 170);
+            messageLabel.Location = new System.Drawing.Point(48, 183);
             messageLabel.Name = "messageLabel";
             messageLabel.Size = new System.Drawing.Size(73, 18);
             messageLabel.TabIndex = 6;
@@ -287,7 +275,7 @@
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new System.Drawing.Point(47, 200);
+            nameLabel.Location = new System.Drawing.Point(48, 150);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new System.Drawing.Size(52, 18);
             nameLabel.TabIndex = 8;
@@ -296,7 +284,7 @@
             // updateTimeLabel1
             // 
             updateTimeLabel1.AutoSize = true;
-            updateTimeLabel1.Location = new System.Drawing.Point(47, 231);
+            updateTimeLabel1.Location = new System.Drawing.Point(48, 302);
             updateTimeLabel1.Name = "updateTimeLabel1";
             updateTimeLabel1.Size = new System.Drawing.Size(96, 18);
             updateTimeLabel1.TabIndex = 10;
@@ -827,10 +815,10 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.panel6);
             this.tabPage3.Controls.Add(this.buttonFetchPostsDataBinding);
             this.tabPage3.Controls.Add(this.listBoxPostDataBinding);
             this.tabPage3.Controls.Add(this.panel5);
+            this.tabPage3.Controls.Add(this.panel6);
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -872,47 +860,38 @@
             this.panel6.Controls.Add(this.imageNormalPictureBox1);
             this.panel6.Controls.Add(createdTimeLabel);
             this.panel6.Controls.Add(this.createdTimeDateTimePicker);
-            this.panel6.Controls.Add(descriptionLabel);
-            this.panel6.Controls.Add(this.descriptionTextBox);
             this.panel6.Controls.Add(messageLabel);
             this.panel6.Controls.Add(this.messageTextBox);
             this.panel6.Controls.Add(nameLabel);
             this.panel6.Controls.Add(this.nameTextBox);
             this.panel6.Controls.Add(updateTimeLabel1);
             this.panel6.Controls.Add(this.updateTimeDateTimePicker1);
-            this.panel6.Location = new System.Drawing.Point(721, 256);
+            this.panel6.Location = new System.Drawing.Point(642, 256);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(421, 302);
+            this.panel6.Size = new System.Drawing.Size(534, 344);
             this.panel6.TabIndex = 1;
             // 
             // createdTimeDateTimePicker
             // 
             this.createdTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "CreatedTime", true));
-            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(154, 107);
+            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(155, 263);
             this.createdTimeDateTimePicker.Name = "createdTimeDateTimePicker";
             this.createdTimeDateTimePicker.Size = new System.Drawing.Size(200, 24);
             this.createdTimeDateTimePicker.TabIndex = 3;
             // 
-            // descriptionTextBox
-            // 
-            this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Description", true));
-            this.descriptionTextBox.Location = new System.Drawing.Point(154, 137);
-            this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(200, 24);
-            this.descriptionTextBox.TabIndex = 5;
-            // 
             // messageTextBox
             // 
             this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Message", true));
-            this.messageTextBox.Location = new System.Drawing.Point(154, 167);
+            this.messageTextBox.Location = new System.Drawing.Point(155, 177);
+            this.messageTextBox.Multiline = true;
             this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(200, 24);
+            this.messageTextBox.Size = new System.Drawing.Size(331, 80);
             this.messageTextBox.TabIndex = 7;
             // 
             // nameTextBox
             // 
             this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Name", true));
-            this.nameTextBox.Location = new System.Drawing.Point(154, 197);
+            this.nameTextBox.Location = new System.Drawing.Point(155, 147);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(200, 24);
             this.nameTextBox.TabIndex = 9;
@@ -920,7 +899,7 @@
             // updateTimeDateTimePicker1
             // 
             this.updateTimeDateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "UpdateTime", true));
-            this.updateTimeDateTimePicker1.Location = new System.Drawing.Point(154, 227);
+            this.updateTimeDateTimePicker1.Location = new System.Drawing.Point(155, 298);
             this.updateTimeDateTimePicker1.Name = "updateTimeDateTimePicker1";
             this.updateTimeDateTimePicker1.Size = new System.Drawing.Size(200, 24);
             this.updateTimeDateTimePicker1.TabIndex = 11;
@@ -1057,7 +1036,7 @@
             // imageNormalLabel1
             // 
             imageNormalLabel1.AutoSize = true;
-            imageNormalLabel1.Location = new System.Drawing.Point(42, 18);
+            imageNormalLabel1.Location = new System.Drawing.Point(43, 51);
             imageNormalLabel1.Name = "imageNormalLabel1";
             imageNormalLabel1.Size = new System.Drawing.Size(105, 18);
             imageNormalLabel1.TabIndex = 12;
@@ -1066,7 +1045,7 @@
             // imageNormalPictureBox1
             // 
             this.imageNormalPictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.postBindingSource, "Place.ImageNormal", true));
-            this.imageNormalPictureBox1.Location = new System.Drawing.Point(195, 18);
+            this.imageNormalPictureBox1.Location = new System.Drawing.Point(196, 51);
             this.imageNormalPictureBox1.Name = "imageNormalPictureBox1";
             this.imageNormalPictureBox1.Size = new System.Drawing.Size(100, 77);
             this.imageNormalPictureBox1.TabIndex = 13;
@@ -1183,7 +1162,6 @@
         private System.Windows.Forms.Button buttonFetchPostsDataBinding;
         private System.Windows.Forms.BindingSource postBindingSource;
         private System.Windows.Forms.DateTimePicker createdTimeDateTimePicker;
-        private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.TextBox messageTextBox;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.DateTimePicker updateTimeDateTimePicker1;

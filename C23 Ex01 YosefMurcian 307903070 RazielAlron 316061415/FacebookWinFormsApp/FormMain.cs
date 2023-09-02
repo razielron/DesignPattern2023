@@ -89,6 +89,7 @@ namespace BasicFacebookFeatures
                 "email",
                 "user_age_range",
                 "user_birthday",
+                "user_groups",
                 "user_friends",
                 "user_gender",
                 "user_hometown",
@@ -101,6 +102,7 @@ namespace BasicFacebookFeatures
             updateLogginForm();
 
         }
+
         private void updateLogginForm()
         {
             m_TheLoggedInUser = m_LoginResult.LoggedInUser;
@@ -111,7 +113,6 @@ namespace BasicFacebookFeatures
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
                 buttonLogin.Invoke(new Action(() => buttonLogin.Text = $"Logged in as {m_TheLoggedInUser.Name}"));
-
                 buttonLogin.Invoke(new Action(() => buttonLogin.BackColor = Color.LightGreen));
                 pictureBoxProfile.Invoke(new Action(() => pictureBoxProfile.ImageLocation = m_TheLoggedInUser.PictureNormalURL));
                 labelAbout.Invoke(new Action(() => m_UiControler.UpdateDetailsAboutUser(labelAbout)));
@@ -255,12 +256,6 @@ namespace BasicFacebookFeatures
         {
             postBindingSource.DataSource = m_TheLoggedInUser.Posts;
         }
-
-        //private void listBoxPostDataBinding_SelectedIndexChanged_1(object sender, EventArgs e)
-        //{
-        //    //Post selectedPost = listBoxPostDataBinding.SelectedItem as Post;
-        //    //postBindingSource.DataSource = selectedPost;
-        //}
 
     }
 }
