@@ -90,7 +90,6 @@ namespace BasicFacebookFeatures
                 "email",
                 "user_age_range",
                 "user_birthday",
-                "user_groups",
                 "user_friends",
                 "user_gender",
                 "user_hometown",
