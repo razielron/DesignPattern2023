@@ -48,5 +48,24 @@ namespace ProxyComponents
                 }
             }
         }
+
+        public new object SelectedItem
+        {
+            get
+            {
+                return base.SelectedItem;
+            }
+            set
+            {
+                if (!IsDesignMode() && base.IsHandleCreated)
+                {
+                    base.Invoke(new Action(() => base.SelectedItem = value));
+                }
+                else
+                {
+                    base.SelectedItem = value;
+                }
+            }
+        }
     }
 }
