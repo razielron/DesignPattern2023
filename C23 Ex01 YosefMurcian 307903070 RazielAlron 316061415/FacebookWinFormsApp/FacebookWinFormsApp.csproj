@@ -92,9 +92,6 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="BestFriend.cs" />
     <Compile Include="BestFriendsManager.cs" />
-    <Compile Include="ButtonProxy.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CategoryPhotoManagerFactory.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="CountriesPhotoManager.cs" />
@@ -108,12 +105,6 @@
     <Compile Include="ICategoryPhotoManager.cs" />
     <Compile Include="ListBoxDataModel.cs" />
     <Compile Include="ListBoxFilterManager.cs" />
-    <Compile Include="ListBoxProxy.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PictureBoxProxy.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UiControler.cs" />
@@ -145,6 +136,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProxyComponents\ProxyComponents.csproj">
+      <Project>{09b1a94f-928d-4dec-8b58-01ab276cffe5}</Project>
+      <Name>ProxyComponents</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

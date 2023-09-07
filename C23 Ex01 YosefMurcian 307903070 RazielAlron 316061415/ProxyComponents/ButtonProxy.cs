@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace BasicFacebookFeatures
+namespace ProxyComponents
 {
     public class ButtonProxy : Button
     {
-        public override string Text 
+        private bool IsDesignMode()
+        {
+            return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        }
+
+        public override string Text
         {
             get
             {
@@ -17,7 +19,7 @@ namespace BasicFacebookFeatures
             }
             set
             {
-                if (base.IsHandleCreated) 
+                if (!IsDesignMode() && base.IsHandleCreated)
                 {
                     base.Invoke(new Action(() => base.Text = value));
                 }
@@ -27,6 +29,7 @@ namespace BasicFacebookFeatures
                 }
             }
         }
+
         public new bool Enabled
         {
             get
@@ -35,7 +38,7 @@ namespace BasicFacebookFeatures
             }
             set
             {
-                if (base.IsHandleCreated)
+                if (!IsDesignMode() && base.IsHandleCreated)
                 {
                     base.Invoke(new Action(() => base.Enabled = value));
                 }

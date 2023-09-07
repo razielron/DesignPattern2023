@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace BasicFacebookFeatures
+namespace ProxyComponents
 {
     public class PictureBoxProxy : PictureBox
     {
+        private bool IsDesignMode()
+        {
+            return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        }
+
         public new string ImageLocation
         {
             get
@@ -17,7 +19,7 @@ namespace BasicFacebookFeatures
             }
             set
             {
-                if (base.IsHandleCreated)
+                if (!IsDesignMode() && base.IsHandleCreated)
                 {
                     base.Invoke(new Action(() => base.ImageLocation = value));
                 }
@@ -36,7 +38,7 @@ namespace BasicFacebookFeatures
             }
             set
             {
-                if (base.IsHandleCreated)
+                if (!IsDesignMode() && base.IsHandleCreated)
                 {
                     base.Invoke(new Action(() => base.SizeMode = value));
                 }

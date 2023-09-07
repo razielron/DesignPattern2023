@@ -1,4 +1,6 @@
-﻿namespace BasicFacebookFeatures
+﻿using ProxyComponents;
+
+namespace BasicFacebookFeatures
 {
     partial class FormMain
     {
