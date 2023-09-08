@@ -6,11 +6,6 @@ namespace ProxyComponents
 {
     public class ButtonProxy : Button
     {
-        private bool IsDesignMode()
-        {
-            return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-        }
-
         public override string Text
         {
             get
@@ -47,6 +42,11 @@ namespace ProxyComponents
                     base.Enabled = value;
                 }
             }
+        }
+
+        private bool IsDesignMode()
+        {
+            return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         }
     }
 }

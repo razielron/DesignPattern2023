@@ -6,11 +6,6 @@ namespace ProxyComponents
 {
     public class ListBoxProxy : ListBox
     {
-        private bool IsDesignMode()
-        {
-            return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-        }
-
         public new object DataSource
         {
             get
@@ -66,6 +61,11 @@ namespace ProxyComponents
                     base.SelectedItem = value;
                 }
             }
+        }
+
+        private bool IsDesignMode()
+        {
+            return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         }
     }
 }

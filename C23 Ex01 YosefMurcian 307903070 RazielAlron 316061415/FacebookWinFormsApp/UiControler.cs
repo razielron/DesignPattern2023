@@ -22,6 +22,25 @@ namespace BasicFacebookFeatures
         private ICategoryPhotoManager m_CategoryPhotoManager;
         private BestFriendsManager m_BestFriendsManager;
 
+        public static UiControler Instance
+        {
+            get
+            {
+                if (s_Instance == null)
+                {
+                    lock (sr_Lock)
+                    {
+                        if (s_Instance == null)
+                        {
+                            s_Instance = new UiControler(m_TheLoggedInUserInitValue);
+                        }
+                    }
+                }
+
+                return s_Instance;
+            }
+        }
+
         private UiControler(User i_TheLoggedInUser)
         {
             m_TheLoggedInUser = i_TheLoggedInUser;
@@ -37,25 +56,6 @@ namespace BasicFacebookFeatures
             m_TheLoggedInUserInitValue = i_TheLoggedInUser;
         }
         
-        public static UiControler Instance
-        {
-            get
-            {
-                if(s_Instance == null)
-                {
-                    lock (sr_Lock)
-                    {
-                        if(s_Instance == null)
-                        {
-                            s_Instance = new UiControler(m_TheLoggedInUserInitValue);
-                        }
-                    }
-                }
-
-                return s_Instance;
-            }
-        }
-
         public void UpdateDetailsAboutUser(Label i_LabelAbout)
         {
             i_LabelAbout.Text = string.Format(

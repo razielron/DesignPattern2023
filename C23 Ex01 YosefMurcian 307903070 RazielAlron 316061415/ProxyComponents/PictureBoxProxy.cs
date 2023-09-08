@@ -6,11 +6,6 @@ namespace ProxyComponents
 {
     public class PictureBoxProxy : PictureBox
     {
-        private bool IsDesignMode()
-        {
-            return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-        }
-
         public new string ImageLocation
         {
             get
@@ -47,6 +42,11 @@ namespace ProxyComponents
                     base.SizeMode = value;
                 }
             }
+        }
+
+        private bool IsDesignMode()
+        {
+            return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         }
     }
 }
