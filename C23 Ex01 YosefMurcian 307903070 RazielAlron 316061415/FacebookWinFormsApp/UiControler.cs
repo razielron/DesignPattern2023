@@ -301,13 +301,16 @@ namespace BasicFacebookFeatures
 
         public void DisplayPostComments(ListBox i_SourceListBox, ListBox i_DestListBox)
         {
-            ListBoxDataModel<Post> selectedPost = (ListBoxDataModel<Post>)i_SourceListBox.SelectedItem;
-
             try
             {
-                Post post = selectedPost.Data;
-                i_DestListBox.DisplayMember = "Message";
-                i_DestListBox.DataSource = post.Comments;
+                ListBoxDataModel<Post> selectedPost = (ListBoxDataModel<Post>)i_SourceListBox.SelectedItem;
+
+                if (selectedPost != null)
+                {
+                    Post post = selectedPost.Data;
+                    i_DestListBox.DisplayMember = "Message";
+                    i_DestListBox.DataSource = post.Comments;
+                }
             }
             catch (Exception ex)
             {
@@ -317,12 +320,15 @@ namespace BasicFacebookFeatures
 
         public void DisplayAlbumPhoto(ListBox i_SourceListBox, ListBox i_DestListBox)
         {
-            ListBoxDataModel<Album> selectedAlbum = (ListBoxDataModel<Album>)i_SourceListBox.SelectedItem;
-
             try
             {
-                Album album = selectedAlbum.Data;
-                i_DestListBox.DataSource = album.Photos;
+                ListBoxDataModel<Album> selectedAlbum = (ListBoxDataModel<Album>)i_SourceListBox.SelectedItem;
+
+                if (selectedAlbum != null)
+                {
+                    Album album = selectedAlbum.Data;
+                    i_DestListBox.DataSource = album.Photos;
+                }
             }
             catch (Exception ex)
             {
@@ -334,7 +340,10 @@ namespace BasicFacebookFeatures
         {
             BestFriend selectedBestFriend = (BestFriend)i_ListBox.SelectedItem;
 
-            i_ListBox.DataSource = m_BestFriendsManager.GetLikeAndCommentsStatistics(selectedBestFriend);
+            if (selectedBestFriend != null)
+            {
+                i_ListBox.DataSource = m_BestFriendsManager.GetLikeAndCommentsStatistics(selectedBestFriend);
+            }
         }
 
         private void DisplayBestFriendsToListBox(ListBox i_ListBox)

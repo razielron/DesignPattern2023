@@ -14,7 +14,6 @@ namespace BasicFacebookFeatures
         private User m_TheLoggedInUser;
         private UiControler m_UiControler;
         private AppSettings m_AppSettings;
-        private Thread dataFetchThread;
 
         public FormMain()
         {
@@ -22,7 +21,8 @@ namespace BasicFacebookFeatures
             FacebookService.s_CollectionLimit = 25;
             m_AppSettings = new AppSettings();
             this.StartPosition = FormStartPosition.Manual;
-         
+            disableButtonsOnLogout();
+
             comboBoxCategories.Items.AddRange(new string[] 
             {
                 Consts.CategoryCountries,
@@ -54,7 +54,28 @@ namespace BasicFacebookFeatures
             m_AppSettings.LastAccessToken = this.m_LoginResult?.AccessToken;
             m_AppSettings.SaveToFile();
         }
+        
+        private void disableButtonsOnLogout()
+        {
+            buttonFetchAlbums.Enabled = false;
+            buttonFetchBestFriends.Enabled = false;
+            buttonCheckIn.Enabled = false;
+            buttonFetchGroups.Enabled = false;
+            buttonFetchLikes.Enabled = false;
+            buttonFetchPosts.Enabled = false;
+            buttonLikePages.Enabled = false;
+        }
 
+        private void enableButtonsOnLogin()
+        {
+            buttonFetchAlbums.Enabled = true;
+            buttonFetchBestFriends.Enabled = true;
+            buttonCheckIn.Enabled = true;
+            buttonFetchGroups.Enabled = true;
+            buttonFetchLikes.Enabled = true;
+            buttonFetchPosts.Enabled = true;
+            buttonLikePages.Enabled = true;
+        }
 
         private void autoLogin()
         {
@@ -66,8 +87,11 @@ namespace BasicFacebookFeatures
             }
             catch (Exception ex)
             {
-                /// this is probably because of an AccessToken expiration:
-                this.Invoke((Action)login);
+                if (m_LoginResult == null)
+                {
+                    /// this is probably because of an AccessToken expiration:
+                    this.Invoke((Action)login);
+                }
             }
         }
 
@@ -85,7 +109,6 @@ namespace BasicFacebookFeatures
         private void login()
         {
             m_LoginResult = FacebookService.Login(
-                /// (This is Desig Patter's App ID. replace it with your own)
                 "274259588558246",
                 "email",
                 "user_age_range",
@@ -125,6 +148,7 @@ namespace BasicFacebookFeatures
                 buttonLogin.BackColor = Color.LightGreen;
                 pictureBoxProfile.ImageLocation = m_TheLoggedInUser.PictureNormalURL;
                 labelAbout.Invoke(new Action(() => m_UiControler.UpdateDetailsAboutUser(labelAbout)));
+                enableButtonsOnLogin();
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
             }
