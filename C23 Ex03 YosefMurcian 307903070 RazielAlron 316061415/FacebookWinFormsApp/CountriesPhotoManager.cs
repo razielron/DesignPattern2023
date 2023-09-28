@@ -16,21 +16,17 @@ namespace BasicFacebookFeatures
             updateItems();
         }
 
-        public List<Photo> GetPhotosByItem(string i_SelectedItem)
+        public IEnumerable<Photo> GetPhotosByItem(string i_SelectedItem)
         {
-            List<Photo> photosInCountry = new List<Photo>();
-
             foreach (Photo photo in m_AllPhotos)
             {
                 string photoCountry = photo.Place?.Location?.Country;
 
                 if (photoCountry?.ToLower() == i_SelectedItem?.ToLower())
                 {
-                    photosInCountry.Add(photo);
+                    yield return photo;
                 }
             }
-
-            return photosInCountry;
         }
 
         private void updateItems()

@@ -7,6 +7,6 @@ namespace BasicFacebookFeatures
     {
         List<string> Items { get; }
 
-        List<Photo> GetPhotosByItem(string i_SelectedItem);
+        IEnumerable<Photo> GetPhotosByItem(string i_SelectedItem);
     }
 }

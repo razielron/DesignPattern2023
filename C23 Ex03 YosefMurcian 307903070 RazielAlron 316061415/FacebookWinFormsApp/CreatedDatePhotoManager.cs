@@ -16,20 +16,16 @@ namespace BasicFacebookFeatures
             updateItems();
         }
 
-        public List<Photo> GetPhotosByItem(string i_SelectedItem)
+        public IEnumerable<Photo> GetPhotosByItem(string i_SelectedItem)
         {
-            List<Photo> photosByCreatedDate = new List<Photo>();
-
             foreach (Photo photo in m_AllPhotos)
             {
                 string createdDate = photo.CreatedTime?.ToString();
                 if (createdDate == i_SelectedItem)
                 {
-                    photosByCreatedDate.Add(photo);
+                    yield return photo;
                 }
             }
-
-            return photosByCreatedDate;
         }
 
         private void updateItems()
