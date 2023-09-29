@@ -28,6 +28,13 @@ namespace BasicFacebookFeatures
                 Consts.CategoryCountries,
                 Consts.CategoryCreatedDate
             });
+            comboBoxSortBy.Items.AddRange(new string[]
+            {
+                Consts.SortByLikes,
+                Consts.SortByComments,
+                Consts.SortByLatestPhotos,
+                Consts.SortByEarliestPhotos
+            });
         }
 
         protected override void OnLoad(EventArgs e)
@@ -291,5 +298,9 @@ namespace BasicFacebookFeatures
             postBindingSource.DataSource = m_TheLoggedInUser.Posts;
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_UiControler.FetchSortedPhotosAndDisplayToListBox(comboBoxSortBy, listBoxAlbums, listBoxPictures);
+        }
     }
 }

@@ -10,9 +10,10 @@ namespace BasicFacebookFeatures
     public sealed class UiControler
     {
         private static readonly object sr_Lock = new object();
-        private static User m_TheLoggedInUserInitValue;
-        private static User m_TheLoggedInUser;
+        private static User s_TheLoggedInUserInitValue;
+        private static User s_TheLoggedInUser;
         private static UiControler s_Instance = null;
+        private Sorter m_PhotoSorter;
         private ListBoxFilterManager<Post> m_PostsFilterManager;
         private ListBoxFilterManager<Page> m_LikedPagesFilterManager;
         private ListBoxFilterManager<Checkin> m_CheckInFilterManager;
@@ -32,7 +33,7 @@ namespace BasicFacebookFeatures
                     {
                         if (s_Instance == null)
                         {
-                            s_Instance = new UiControler(m_TheLoggedInUserInitValue);
+                            s_Instance = new UiControler(s_TheLoggedInUserInitValue);
                         }
                     }
                 }
@@ -43,7 +44,8 @@ namespace BasicFacebookFeatures
 
         private UiControler(User i_TheLoggedInUser)
         {
-            m_TheLoggedInUser = i_TheLoggedInUser;
+            s_TheLoggedInUser = i_TheLoggedInUser;
+            m_PhotoSorter = new Sorter();
         }
 
         public static void Initialize(User i_TheLoggedInUser)
@@ -53,21 +55,21 @@ namespace BasicFacebookFeatures
                 throw new InvalidOperationException("UI controler was already created");
             }
 
-            m_TheLoggedInUserInitValue = i_TheLoggedInUser;
+            s_TheLoggedInUserInitValue = i_TheLoggedInUser;
         }
         
         public void UpdateDetailsAboutUser(Label i_LabelAbout)
         {
             i_LabelAbout.Text = string.Format(
                 "{0} {1}{2}Email: {3}{4}Birth Date: {5}{6}Address: {7}",
-                m_TheLoggedInUser.FirstName,
-                m_TheLoggedInUser.LastName,
+                s_TheLoggedInUser.FirstName,
+                s_TheLoggedInUser.LastName,
                 Environment.NewLine,
-                m_TheLoggedInUser.Email,
+                s_TheLoggedInUser.Email,
                 Environment.NewLine,
-                m_TheLoggedInUser.Birthday,
+                s_TheLoggedInUser.Birthday,
                 Environment.NewLine,
-                m_TheLoggedInUser.Location);
+                s_TheLoggedInUser.Location);
         }
 
         public void FetchPostsAndDisplayToListBox(ListBoxProxy i_ListBoxPosts)
@@ -77,7 +79,7 @@ namespace BasicFacebookFeatures
             try
             {
                 initiateListBox(i_ListBoxPosts);
-                allPosts = m_TheLoggedInUser.Posts;
+                allPosts = s_TheLoggedInUser.Posts;
                 m_PostsFilterManager = new ListBoxFilterManager<Post>(allPosts
                     .Select(convertPostToListBoxDataModel)
                     .ToList());
@@ -100,7 +102,7 @@ namespace BasicFacebookFeatures
             try
             {
                 initiateListBox(i_ListBoxLikePages);
-                allPages = m_TheLoggedInUser.LikedPages;
+                allPages = s_TheLoggedInUser.LikedPages;
                 m_LikedPagesFilterManager = new ListBoxFilterManager<Page>(allPages
                     .Select(convertLikedPagesToListBoxDataModel)
                     .ToList());
@@ -123,7 +125,7 @@ namespace BasicFacebookFeatures
             try
             {
                 initiateListBox(i_ListBoxCheckIn);
-                allCheckin = m_TheLoggedInUser.Checkins;
+                allCheckin = s_TheLoggedInUser.Checkins;
                 m_CheckInFilterManager = new ListBoxFilterManager<Checkin>(allCheckin
                     .Select(convertCheckInToListBoxDataModel)
                     .ToList());
@@ -146,7 +148,7 @@ namespace BasicFacebookFeatures
             try
             {
                 initiateListBox(i_ListBoxAlbums);
-                allAlbums = m_TheLoggedInUser.Albums;
+                allAlbums = s_TheLoggedInUser.Albums;
                 m_AlbumsFilterManager = new ListBoxFilterManager<Album>(allAlbums
                     .Select(convertAlbumToListBoxDataModel)
                     .ToList());
@@ -169,7 +171,7 @@ namespace BasicFacebookFeatures
             try
             {
                 initiateListBox(i_ListBoxGroups);
-                allGroups = m_TheLoggedInUser.Groups;
+                allGroups = s_TheLoggedInUser.Groups;
                 m_GroupsFilterManager = new ListBoxFilterManager<Group>(allGroups
                     .Select(convertGroupToListBoxDataModel)
                     .ToList());
@@ -192,7 +194,7 @@ namespace BasicFacebookFeatures
             try
             {
                 initiateListBox(i_ListBoxPhotosTaggedIn);
-                allPhotos = m_TheLoggedInUser.PhotosTaggedIn;
+                allPhotos = s_TheLoggedInUser.PhotosTaggedIn;
                 m_PhotosTaggedInFilterManager = new ListBoxFilterManager<Photo>(allPhotos
                     .Select(convertPhotoToListBoxDataModel)
                     .ToList());
@@ -217,7 +219,7 @@ namespace BasicFacebookFeatures
                 List<Photo> allPhotos;
                 string selectedCategory = i_ComboBox.SelectedItem.ToString().ToLower();
                 
-                albums = m_TheLoggedInUser.Albums;
+                albums = s_TheLoggedInUser.Albums;
                 allPhotos = albums.SelectMany(x => x.Photos).ToList();
                 m_CategoryPhotoManager = CategoryPhotoManagerFactory.CreateCategoryPhotoManager(selectedCategory, allPhotos);
                 DisplayItemsToCategoryListBox(i_ListBox);
@@ -238,7 +240,7 @@ namespace BasicFacebookFeatures
 
             try
             {
-                postsResponse = m_TheLoggedInUser.Posts;
+                postsResponse = s_TheLoggedInUser.Posts;
                 m_BestFriendsManager = new BestFriendsManager(postsResponse.ToList());
                 DisplayBestFriendsToListBox(i_ListBox);
             }
@@ -249,6 +251,43 @@ namespace BasicFacebookFeatures
             finally
             {
                 handleNoData(postsResponse);
+            }
+        }
+
+        public void FetchSortedPhotosAndDisplayToListBox(ComboBox comboBoxSortBy, ListBoxProxy i_SelectedAlbum, ListBox i_ListBoxPictures)
+        {
+            string selectedCriterion = comboBoxSortBy.SelectedItem.ToString();
+            ListBoxDataModel<Album> selectedAlbum = (ListBoxDataModel<Album>)i_SelectedAlbum.SelectedItem;
+
+            switch (selectedCriterion)
+            {
+                case Consts.SortByLikes:
+                    m_PhotoSorter.ComparisonStrategy = new LikedByComparisonCriterion();
+                    break;
+                case Consts.SortByComments:
+                    m_PhotoSorter.ComparisonStrategy = new CommentsComparisonCriterion();
+                    break;
+                case Consts.SortByLatestPhotos:
+                    m_PhotoSorter.ComparisonStrategy = new LatestPhotosComparisonCriterion();
+                    break;
+                case Consts.SortByEarliestPhotos:
+                    m_PhotoSorter.ComparisonStrategy = new EarliestPhotosComparisonCriterion();
+                    break;
+            }
+
+            DisplayAlbumPhotos(selectedAlbum, i_ListBoxPictures, m_PhotoSorter);
+        }
+
+        public void DisplayAlbumPhotos(ListBoxDataModel<Album> selectedAlbum, ListBox photosListBox, Sorter strategy)
+        {
+            if (selectedAlbum != null)
+            {
+                Album album = selectedAlbum.Data;
+                List<Photo> sortedPhotos = album.Photos.ToList();
+
+                strategy.Sort(sortedPhotos);
+
+                photosListBox.DataSource = sortedPhotos;
             }
         }
 
