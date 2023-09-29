@@ -43,7 +43,6 @@ namespace BasicFacebookFeatures
             }
             else
             {
-                /// C# 3.0 feature: Object Initializer
                 loadedThis = new AppSettings()
                 {
                     RememberUser = false,

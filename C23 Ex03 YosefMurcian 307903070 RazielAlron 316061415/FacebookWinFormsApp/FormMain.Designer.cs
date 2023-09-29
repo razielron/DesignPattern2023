@@ -510,7 +510,7 @@ namespace BasicFacebookFeatures
             this.textBoxPhotosTaggenInSearch.AccessibleDescription = "";
             this.textBoxPhotosTaggenInSearch.Location = new System.Drawing.Point(309, 260);
             this.textBoxPhotosTaggenInSearch.Name = "textBoxPhotosTaggenInSearch";
-            this.textBoxPhotosTaggenInSearch.Size = new System.Drawing.Size(129, 24);
+            this.textBoxPhotosTaggenInSearch.Size = new System.Drawing.Size(272, 24);
             this.textBoxPhotosTaggenInSearch.TabIndex = 78;
             this.textBoxPhotosTaggenInSearch.TextChanged += new System.EventHandler(this.textBoxPhotosTaggenInSearch_TextChanged);
             // 
@@ -1061,7 +1061,7 @@ namespace BasicFacebookFeatures
             this.comboBoxSortBy.FormattingEnabled = true;
             this.comboBoxSortBy.Location = new System.Drawing.Point(201, 81);
             this.comboBoxSortBy.Name = "comboBoxSortBy";
-            this.comboBoxSortBy.Size = new System.Drawing.Size(144, 26);
+            this.comboBoxSortBy.Size = new System.Drawing.Size(159, 26);
             this.comboBoxSortBy.TabIndex = 102;
             this.comboBoxSortBy.Text = "Sort By..";
             this.comboBoxSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
