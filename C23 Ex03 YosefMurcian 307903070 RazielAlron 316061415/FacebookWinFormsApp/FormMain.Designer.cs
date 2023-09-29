@@ -46,77 +46,79 @@ namespace BasicFacebookFeatures
             System.Windows.Forms.Label nameLabel;
             System.Windows.Forms.Label updateTimeLabel1;
             System.Windows.Forms.Label imageNormalLabel1;
-            this.buttonLogin = new ButtonProxy();
-            this.buttonLogout = new ButtonProxy();
+            this.buttonLogin = new ProxyComponents.ButtonProxy();
+            this.buttonLogout = new ProxyComponents.ButtonProxy();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.listBoxPostComments = new System.Windows.Forms.ListBox();
-            this.listBoxPosts = new ListBoxProxy();
-            this.buttonFetchPosts = new ButtonProxy();
+            this.listBoxPosts = new ProxyComponents.ListBoxProxy();
+            this.buttonFetchPosts = new ProxyComponents.ButtonProxy();
             this.textBoxPostsSearch = new System.Windows.Forms.TextBox();
-            this.pictureBoxLikedPages = new PictureBoxProxy();
-            this.pictureBoxCheckIn = new PictureBoxProxy();
-            this.pictureBoxGroups = new PictureBoxProxy();
-            this.pictureBoxPhotosTaggedIn = new PictureBoxProxy();
+            this.pictureBoxLikedPages = new ProxyComponents.PictureBoxProxy();
+            this.pictureBoxCheckIn = new ProxyComponents.PictureBoxProxy();
+            this.pictureBoxGroups = new ProxyComponents.PictureBoxProxy();
+            this.pictureBoxPhotosTaggedIn = new ProxyComponents.PictureBoxProxy();
             this.textBoxLikedPagesSearch = new System.Windows.Forms.TextBox();
             this.textBoxCheckInSearch = new System.Windows.Forms.TextBox();
             this.textBoxPhotosTaggenInSearch = new System.Windows.Forms.TextBox();
             this.textBoxGroupSearch = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonFetchAlbums = new ButtonProxy();
+            this.buttonFetchAlbums = new ProxyComponents.ButtonProxy();
             this.listBoxPictures = new System.Windows.Forms.ListBox();
-            this.listBoxAlbums = new ListBoxProxy();
-            this.pictureBoxPhotos = new PictureBoxProxy();
+            this.listBoxAlbums = new ProxyComponents.ListBoxProxy();
+            this.pictureBoxPhotos = new ProxyComponents.PictureBoxProxy();
             this.label1 = new System.Windows.Forms.Label();
             this.labelAbout = new System.Windows.Forms.Label();
-            this.buttonFetchLikes = new ButtonProxy();
-            this.listBoxPhotosTaggedIn = new ListBoxProxy();
-            this.buttonCheckIn = new ButtonProxy();
-            this.buttonFetchGroups = new ButtonProxy();
-            this.listBoxCheckIn = new ListBoxProxy();
-            this.listBoxGroups = new ListBoxProxy();
-            this.buttonLikePages = new ButtonProxy();
-            this.listBoxLikePages = new ListBoxProxy();
-            this.pictureBoxProfile = new PictureBoxProxy();
+            this.buttonFetchLikes = new ProxyComponents.ButtonProxy();
+            this.listBoxPhotosTaggedIn = new ProxyComponents.ListBoxProxy();
+            this.buttonCheckIn = new ProxyComponents.ButtonProxy();
+            this.buttonFetchGroups = new ProxyComponents.ButtonProxy();
+            this.listBoxCheckIn = new ProxyComponents.ListBoxProxy();
+            this.listBoxGroups = new ProxyComponents.ListBoxProxy();
+            this.buttonLikePages = new ProxyComponents.ButtonProxy();
+            this.listBoxLikePages = new ProxyComponents.ListBoxProxy();
+            this.pictureBoxProfile = new ProxyComponents.PictureBoxProxy();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listBoxSortedPhotos = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.listBoxItemsOfCategory = new System.Windows.Forms.ListBox();
-            this.pictureBoxCategoryPhoto = new PictureBoxProxy();
+            this.pictureBoxCategoryPhoto = new ProxyComponents.PictureBoxProxy();
             this.comboBoxCategories = new System.Windows.Forms.ComboBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.listBoxStatistics = new System.Windows.Forms.ListBox();
-            this.buttonFetchBestFriends = new ButtonProxy();
+            this.buttonFetchBestFriends = new ProxyComponents.ButtonProxy();
             this.listBoxBestFriends = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.buttonFetchPostsDataBinding = new ButtonProxy();
+            this.buttonFetchPostsDataBinding = new ProxyComponents.ButtonProxy();
             this.listBoxPostDataBinding = new System.Windows.Forms.ListBox();
             this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.createdTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.messageTextBox = new System.Windows.Forms.TextBox();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.updateTimeDateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel5 = new System.Windows.Forms.Panel();
             this.aboutTextBox = new System.Windows.Forms.TextBox();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.birthdayTextBox = new System.Windows.Forms.TextBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
-            this.imageNormalPictureBox = new PictureBoxProxy();
+            this.imageNormalPictureBox = new ProxyComponents.PictureBoxProxy();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.localeTextBox = new System.Windows.Forms.TextBox();
             this.middleNameTextBox = new System.Windows.Forms.TextBox();
             this.religionTextBox = new System.Windows.Forms.TextBox();
             this.updateTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.verfiedCheckBox = new System.Windows.Forms.CheckBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.imageNormalPictureBox1 = new ProxyComponents.PictureBoxProxy();
+            this.createdTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.messageTextBox = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.updateTimeDateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.checkinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.imageNormalPictureBox1 = new PictureBoxProxy();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.comboBoxSortBy = new System.Windows.Forms.ComboBox();
             aboutLabel = new System.Windows.Forms.Label();
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
@@ -149,12 +151,12 @@ namespace BasicFacebookFeatures
             this.panel4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
-            this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkinsBindingSource)).BeginInit();
+            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // aboutLabel
@@ -291,6 +293,15 @@ namespace BasicFacebookFeatures
             updateTimeLabel1.Size = new System.Drawing.Size(96, 18);
             updateTimeLabel1.TabIndex = 10;
             updateTimeLabel1.Text = "Update Time:";
+            // 
+            // imageNormalLabel1
+            // 
+            imageNormalLabel1.AutoSize = true;
+            imageNormalLabel1.Location = new System.Drawing.Point(43, 51);
+            imageNormalLabel1.Name = "imageNormalLabel1";
+            imageNormalLabel1.Size = new System.Drawing.Size(105, 18);
+            imageNormalLabel1.TabIndex = 12;
+            imageNormalLabel1.Text = "Image Normal:";
             // 
             // buttonLogin
             // 
@@ -499,7 +510,7 @@ namespace BasicFacebookFeatures
             this.textBoxPhotosTaggenInSearch.AccessibleDescription = "";
             this.textBoxPhotosTaggenInSearch.Location = new System.Drawing.Point(309, 260);
             this.textBoxPhotosTaggenInSearch.Name = "textBoxPhotosTaggenInSearch";
-            this.textBoxPhotosTaggenInSearch.Size = new System.Drawing.Size(272, 24);
+            this.textBoxPhotosTaggenInSearch.Size = new System.Drawing.Size(129, 24);
             this.textBoxPhotosTaggenInSearch.TabIndex = 78;
             this.textBoxPhotosTaggenInSearch.TextChanged += new System.EventHandler(this.textBoxPhotosTaggenInSearch_TextChanged);
             // 
@@ -515,6 +526,7 @@ namespace BasicFacebookFeatures
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Wheat;
+            this.panel1.Controls.Add(this.comboBoxSortBy);
             this.panel1.Controls.Add(this.buttonFetchAlbums);
             this.panel1.Controls.Add(this.listBoxPictures);
             this.panel1.Controls.Add(this.listBoxAlbums);
@@ -540,7 +552,7 @@ namespace BasicFacebookFeatures
             this.listBoxPictures.BackColor = System.Drawing.SystemColors.Info;
             this.listBoxPictures.FormattingEnabled = true;
             this.listBoxPictures.ItemHeight = 18;
-            this.listBoxPictures.Location = new System.Drawing.Point(201, 95);
+            this.listBoxPictures.Location = new System.Drawing.Point(201, 104);
             this.listBoxPictures.Name = "listBoxPictures";
             this.listBoxPictures.Size = new System.Drawing.Size(192, 112);
             this.listBoxPictures.TabIndex = 74;
@@ -855,57 +867,6 @@ namespace BasicFacebookFeatures
             // 
             this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
             // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.NavajoWhite;
-            this.panel6.Controls.Add(imageNormalLabel1);
-            this.panel6.Controls.Add(this.imageNormalPictureBox1);
-            this.panel6.Controls.Add(createdTimeLabel);
-            this.panel6.Controls.Add(this.createdTimeDateTimePicker);
-            this.panel6.Controls.Add(messageLabel);
-            this.panel6.Controls.Add(this.messageTextBox);
-            this.panel6.Controls.Add(nameLabel);
-            this.panel6.Controls.Add(this.nameTextBox);
-            this.panel6.Controls.Add(updateTimeLabel1);
-            this.panel6.Controls.Add(this.updateTimeDateTimePicker1);
-            this.panel6.Location = new System.Drawing.Point(642, 256);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(534, 344);
-            this.panel6.TabIndex = 1;
-            // 
-            // createdTimeDateTimePicker
-            // 
-            this.createdTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "CreatedTime", true));
-            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(155, 263);
-            this.createdTimeDateTimePicker.Name = "createdTimeDateTimePicker";
-            this.createdTimeDateTimePicker.Size = new System.Drawing.Size(200, 24);
-            this.createdTimeDateTimePicker.TabIndex = 3;
-            // 
-            // messageTextBox
-            // 
-            this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Message", true));
-            this.messageTextBox.Location = new System.Drawing.Point(155, 177);
-            this.messageTextBox.Multiline = true;
-            this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(331, 80);
-            this.messageTextBox.TabIndex = 7;
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Name", true));
-            this.nameTextBox.Location = new System.Drawing.Point(155, 147);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(200, 24);
-            this.nameTextBox.TabIndex = 9;
-            // 
-            // updateTimeDateTimePicker1
-            // 
-            this.updateTimeDateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "UpdateTime", true));
-            this.updateTimeDateTimePicker1.Location = new System.Drawing.Point(155, 298);
-            this.updateTimeDateTimePicker1.Name = "updateTimeDateTimePicker1";
-            this.updateTimeDateTimePicker1.Size = new System.Drawing.Size(200, 24);
-            this.updateTimeDateTimePicker1.TabIndex = 11;
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.NavajoWhite;
@@ -1031,18 +992,23 @@ namespace BasicFacebookFeatures
             this.verfiedCheckBox.Text = "checkBox1";
             this.verfiedCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkinsBindingSource
+            // panel6
             // 
-            this.checkinsBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Checkin);
-            // 
-            // imageNormalLabel1
-            // 
-            imageNormalLabel1.AutoSize = true;
-            imageNormalLabel1.Location = new System.Drawing.Point(43, 51);
-            imageNormalLabel1.Name = "imageNormalLabel1";
-            imageNormalLabel1.Size = new System.Drawing.Size(105, 18);
-            imageNormalLabel1.TabIndex = 12;
-            imageNormalLabel1.Text = "Image Normal:";
+            this.panel6.BackColor = System.Drawing.Color.NavajoWhite;
+            this.panel6.Controls.Add(imageNormalLabel1);
+            this.panel6.Controls.Add(this.imageNormalPictureBox1);
+            this.panel6.Controls.Add(createdTimeLabel);
+            this.panel6.Controls.Add(this.createdTimeDateTimePicker);
+            this.panel6.Controls.Add(messageLabel);
+            this.panel6.Controls.Add(this.messageTextBox);
+            this.panel6.Controls.Add(nameLabel);
+            this.panel6.Controls.Add(this.nameTextBox);
+            this.panel6.Controls.Add(updateTimeLabel1);
+            this.panel6.Controls.Add(this.updateTimeDateTimePicker1);
+            this.panel6.Location = new System.Drawing.Point(642, 256);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(534, 344);
+            this.panel6.TabIndex = 1;
             // 
             // imageNormalPictureBox1
             // 
@@ -1052,6 +1018,53 @@ namespace BasicFacebookFeatures
             this.imageNormalPictureBox1.Size = new System.Drawing.Size(100, 77);
             this.imageNormalPictureBox1.TabIndex = 13;
             this.imageNormalPictureBox1.TabStop = false;
+            // 
+            // createdTimeDateTimePicker
+            // 
+            this.createdTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "CreatedTime", true));
+            this.createdTimeDateTimePicker.Location = new System.Drawing.Point(155, 263);
+            this.createdTimeDateTimePicker.Name = "createdTimeDateTimePicker";
+            this.createdTimeDateTimePicker.Size = new System.Drawing.Size(200, 24);
+            this.createdTimeDateTimePicker.TabIndex = 3;
+            // 
+            // messageTextBox
+            // 
+            this.messageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Message", true));
+            this.messageTextBox.Location = new System.Drawing.Point(155, 177);
+            this.messageTextBox.Multiline = true;
+            this.messageTextBox.Name = "messageTextBox";
+            this.messageTextBox.Size = new System.Drawing.Size(331, 80);
+            this.messageTextBox.TabIndex = 7;
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.postBindingSource, "Name", true));
+            this.nameTextBox.Location = new System.Drawing.Point(155, 147);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(200, 24);
+            this.nameTextBox.TabIndex = 9;
+            // 
+            // updateTimeDateTimePicker1
+            // 
+            this.updateTimeDateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.postBindingSource, "UpdateTime", true));
+            this.updateTimeDateTimePicker1.Location = new System.Drawing.Point(155, 298);
+            this.updateTimeDateTimePicker1.Name = "updateTimeDateTimePicker1";
+            this.updateTimeDateTimePicker1.Size = new System.Drawing.Size(200, 24);
+            this.updateTimeDateTimePicker1.TabIndex = 11;
+            // 
+            // checkinsBindingSource
+            // 
+            this.checkinsBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Checkin);
+            // 
+            // comboBoxSortBy
+            // 
+            this.comboBoxSortBy.FormattingEnabled = true;
+            this.comboBoxSortBy.Location = new System.Drawing.Point(201, 81);
+            this.comboBoxSortBy.Name = "comboBoxSortBy";
+            this.comboBoxSortBy.Size = new System.Drawing.Size(144, 26);
+            this.comboBoxSortBy.TabIndex = 102;
+            this.comboBoxSortBy.Text = "Sort By..";
+            this.comboBoxSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // FormMain
             // 
@@ -1084,14 +1097,14 @@ namespace BasicFacebookFeatures
             this.panel4.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkinsBindingSource)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkinsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1169,6 +1182,8 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.DateTimePicker updateTimeDateTimePicker1;
         private PictureBoxProxy imageNormalPictureBox1;
         private System.Windows.Forms.BindingSource checkinsBindingSource;
+        private System.Windows.Forms.ComboBox comboBoxSortBy;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
