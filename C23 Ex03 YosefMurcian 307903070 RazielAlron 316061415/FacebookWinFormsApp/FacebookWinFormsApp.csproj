@@ -90,9 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="AutomaticUpdater.cs" />
     <Compile Include="BestFriend.cs" />
     <Compile Include="BestFriendsManager.cs" />
     <Compile Include="CategoryPhotoManagerFactory.cs" />
+    <Compile Include="ComboBoxDataModel.cs" />
     <Compile Include="CommentsComparisonCriterion.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="CountriesPhotoManager.cs" />

@@ -50,6 +50,7 @@ namespace BasicFacebookFeatures
             this.buttonLogout = new ProxyComponents.ButtonProxy();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.comboBoxAutoUpdate = new System.Windows.Forms.ComboBox();
             this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -66,6 +67,7 @@ namespace BasicFacebookFeatures
             this.textBoxPhotosTaggenInSearch = new System.Windows.Forms.TextBox();
             this.textBoxGroupSearch = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBoxSortBy = new System.Windows.Forms.ComboBox();
             this.buttonFetchAlbums = new ProxyComponents.ButtonProxy();
             this.listBoxPictures = new System.Windows.Forms.ListBox();
             this.listBoxAlbums = new ProxyComponents.ListBoxProxy();
@@ -118,7 +120,6 @@ namespace BasicFacebookFeatures
             this.updateTimeDateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.checkinsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.comboBoxSortBy = new System.Windows.Forms.ComboBox();
             aboutLabel = new System.Windows.Forms.Label();
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
@@ -340,6 +341,7 @@ namespace BasicFacebookFeatures
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.comboBoxAutoUpdate);
             this.tabPage1.Controls.Add(this.checkBoxRememberUser);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.panel3);
@@ -372,6 +374,16 @@ namespace BasicFacebookFeatures
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Basic Features";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxAutoUpdate
+            // 
+            this.comboBoxAutoUpdate.FormattingEnabled = true;
+            this.comboBoxAutoUpdate.Location = new System.Drawing.Point(200, 94);
+            this.comboBoxAutoUpdate.Name = "comboBoxAutoUpdate";
+            this.comboBoxAutoUpdate.Size = new System.Drawing.Size(159, 26);
+            this.comboBoxAutoUpdate.TabIndex = 103;
+            this.comboBoxAutoUpdate.Text = "Auto update every...";
+            this.comboBoxAutoUpdate.SelectedIndexChanged += new System.EventHandler(this.comboBoxAutoUpdate_SelectedIndexChanged);
             // 
             // checkBoxRememberUser
             // 
@@ -535,6 +547,16 @@ namespace BasicFacebookFeatures
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(592, 225);
             this.panel1.TabIndex = 75;
+            // 
+            // comboBoxSortBy
+            // 
+            this.comboBoxSortBy.FormattingEnabled = true;
+            this.comboBoxSortBy.Location = new System.Drawing.Point(201, 81);
+            this.comboBoxSortBy.Name = "comboBoxSortBy";
+            this.comboBoxSortBy.Size = new System.Drawing.Size(159, 26);
+            this.comboBoxSortBy.TabIndex = 102;
+            this.comboBoxSortBy.Text = "Sort By..";
+            this.comboBoxSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // buttonFetchAlbums
             // 
@@ -1056,16 +1078,6 @@ namespace BasicFacebookFeatures
             // 
             this.checkinsBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Checkin);
             // 
-            // comboBoxSortBy
-            // 
-            this.comboBoxSortBy.FormattingEnabled = true;
-            this.comboBoxSortBy.Location = new System.Drawing.Point(201, 81);
-            this.comboBoxSortBy.Name = "comboBoxSortBy";
-            this.comboBoxSortBy.Size = new System.Drawing.Size(159, 26);
-            this.comboBoxSortBy.TabIndex = 102;
-            this.comboBoxSortBy.Text = "Sort By..";
-            this.comboBoxSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1184,6 +1196,7 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.BindingSource checkinsBindingSource;
         private System.Windows.Forms.ComboBox comboBoxSortBy;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ComboBox comboBoxAutoUpdate;
     }
 }
 

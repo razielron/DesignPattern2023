@@ -12,16 +12,19 @@ namespace BasicFacebookFeatures
     {
         private LoginResult m_LoginResult;
         private User m_TheLoggedInUser;
-        private UiControler m_UiControler;
+        private UiControler m_UiController;
         private AppSettings m_AppSettings;
+        private AutomaticUpdater m_AutomaticUpdater;
 
         public FormMain()
         {
             InitializeComponent();
             FacebookService.s_CollectionLimit = 25;
             m_AppSettings = new AppSettings();
+            m_AutomaticUpdater = new AutomaticUpdater();
             this.StartPosition = FormStartPosition.Manual;
             disableButtonsOnLogout();
+            addAutoUpdateActions();
 
             comboBoxCategories.Items.AddRange(new string[] 
             {
@@ -34,6 +37,13 @@ namespace BasicFacebookFeatures
                 Consts.SortByComments,
                 Consts.SortByLatestPhotos,
                 Consts.SortByEarliestPhotos
+            });
+            comboBoxAutoUpdate.Items.AddRange(new ComboBoxDataModel[]
+            {
+                new ComboBoxDataModel { Text = Consts.TurnOffText, Value = 0 },
+                new ComboBoxDataModel { Text = Consts.OneMinuteText, Value = Consts.OneMinute },
+                new ComboBoxDataModel { Text = Consts.FiveMinutesText, Value = Consts.FiveMinutes},
+                new ComboBoxDataModel { Text = Consts.TenMinutesText, Value = Consts.TenMinutes },
             });
         }
 
@@ -61,6 +71,15 @@ namespace BasicFacebookFeatures
             m_AppSettings.RememberUser = this.checkBoxRememberUser.Checked;
             m_AppSettings.LastAccessToken = this.m_LoginResult?.AccessToken;
             m_AppSettings.SaveToFile();
+        }
+
+        private void addAutoUpdateActions()
+        {
+            m_AutomaticUpdater.m_EntityUpdateAction += () => m_UiController.FetchAlbumsAndDisplayToListBox(listBoxAlbums);
+            m_AutomaticUpdater.m_EntityUpdateAction += () => m_UiController.FetchPhotosTaggedInAndDisplayToListBox(listBoxPhotosTaggedIn);
+            m_AutomaticUpdater.m_EntityUpdateAction += () => m_UiController.FetchLikedPagesAndDisplayToListBox(listBoxLikePages);
+            m_AutomaticUpdater.m_EntityUpdateAction += () => m_UiController.FetchCheckInAndDisplayToListBox(listBoxCheckIn);
+            m_AutomaticUpdater.m_EntityUpdateAction += () => m_UiController.FetchPostsAndDisplayToListBox(listBoxPosts);
         }
         
         private void disableButtonsOnLogout()
@@ -136,11 +155,11 @@ namespace BasicFacebookFeatures
 
         private void fetchAllData()
         {
-            new Thread(() => m_UiControler.FetchAlbumsAndDisplayToListBox(listBoxAlbums)).Start();
-            new Thread(() => m_UiControler.FetchPhotosTaggedInAndDisplayToListBox(listBoxPhotosTaggedIn)).Start();
-            new Thread(() => m_UiControler.FetchLikedPagesAndDisplayToListBox(listBoxLikePages)).Start();
-            new Thread(() => m_UiControler.FetchCheckInAndDisplayToListBox(listBoxCheckIn)).Start();
-            new Thread(() => m_UiControler.FetchPostsAndDisplayToListBox(listBoxPosts)).Start();
+            new Thread(() => m_UiController.FetchAlbumsAndDisplayToListBox(listBoxAlbums)).Start();
+            new Thread(() => m_UiController.FetchPhotosTaggedInAndDisplayToListBox(listBoxPhotosTaggedIn)).Start();
+            new Thread(() => m_UiController.FetchLikedPagesAndDisplayToListBox(listBoxLikePages)).Start();
+            new Thread(() => m_UiController.FetchCheckInAndDisplayToListBox(listBoxCheckIn)).Start();
+            new Thread(() => m_UiController.FetchPostsAndDisplayToListBox(listBoxPosts)).Start();
         }
 
         private void updateLogginForm()
@@ -148,14 +167,14 @@ namespace BasicFacebookFeatures
             m_TheLoggedInUser = m_LoginResult.LoggedInUser;
             userBindingSource.DataSource = m_TheLoggedInUser;
             UiControler.Initialize(m_TheLoggedInUser);
-            m_UiControler = UiControler.Instance;
+            m_UiController = UiControler.Instance;
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
                 buttonLogin.Text = $"Logged in as {m_TheLoggedInUser.Name}";
                 buttonLogin.BackColor = Color.LightGreen;
                 pictureBoxProfile.ImageLocation = m_TheLoggedInUser.PictureNormalURL;
-                labelAbout.Invoke(new Action(() => m_UiControler.UpdateDetailsAboutUser(labelAbout)));
+                labelAbout.Invoke(new Action(() => m_UiController.UpdateDetailsAboutUser(labelAbout)));
                 enableButtonsOnLogin();
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
@@ -175,122 +194,122 @@ namespace BasicFacebookFeatures
         private void listBoxPictures_SelectedIndexChanged(object sender, EventArgs e)
         {
             Photo photo = (Photo)listBoxPictures.SelectedItem;
-            m_UiControler.DisplayImageInPictureBox(pictureBoxPhotos, photo?.PictureNormalURL);
+            m_UiController.DisplayImageInPictureBox(pictureBoxPhotos, photo?.PictureNormalURL);
         }
         
         private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_UiControler.DisplayAlbumPhoto(listBoxAlbums, listBoxPictures);
+            m_UiController.DisplayAlbumPhoto(listBoxAlbums, listBoxPictures);
         }
 
         private void buttonFetchAlbums_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchAlbumsAndDisplayToListBox(listBoxAlbums);
+            m_UiController.FetchAlbumsAndDisplayToListBox(listBoxAlbums);
         }
        
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_UiControler.DisplayPostComments(listBoxPosts, listBoxPostComments);
+            m_UiController.DisplayPostComments(listBoxPosts, listBoxPostComments);
         }
 
         private void buttonFetchPosts_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchPostsAndDisplayToListBox(listBoxPosts);
+            m_UiController.FetchPostsAndDisplayToListBox(listBoxPosts);
         }
 
         private void listBoxLikePages_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBoxDataModel<Page> selectedLikedPage = (ListBoxDataModel<Page>)listBoxLikePages.SelectedItem;
-            m_UiControler.DisplayImageInPictureBox(pictureBoxLikedPages, selectedLikedPage?.Data?.PictureNormalURL);
+            m_UiController.DisplayImageInPictureBox(pictureBoxLikedPages, selectedLikedPage?.Data?.PictureNormalURL);
         }
 
         private void buttonFetchLikePages_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchLikedPagesAndDisplayToListBox(listBoxLikePages);
+            m_UiController.FetchLikedPagesAndDisplayToListBox(listBoxLikePages);
         }
 
         private void buttonFetchGroups_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchGroupsAndDisplayToListBox(listBoxGroups);
+            m_UiController.FetchGroupsAndDisplayToListBox(listBoxGroups);
         }
 
         private void buttonCheckIn_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchCheckInAndDisplayToListBox(listBoxCheckIn);
+            m_UiController.FetchCheckInAndDisplayToListBox(listBoxCheckIn);
         }
 
         private void buttonFetchPhotosTaggedIn_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchPhotosTaggedInAndDisplayToListBox(listBoxPhotosTaggedIn);
+            m_UiController.FetchPhotosTaggedInAndDisplayToListBox(listBoxPhotosTaggedIn);
         }
 
         private void listBoxPhotosTaggedIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBoxDataModel<Photo> selectedPhotoTaggedIn = (ListBoxDataModel<Photo>)listBoxPhotosTaggedIn.SelectedItem;
-            m_UiControler.DisplayImageInPictureBox(pictureBoxPhotosTaggedIn, selectedPhotoTaggedIn?.Data?.PictureThumbURL);
+            m_UiController.DisplayImageInPictureBox(pictureBoxPhotosTaggedIn, selectedPhotoTaggedIn?.Data?.PictureThumbURL);
         }
 
         private void textBoxGroupSearch_TextChanged(object sender, EventArgs e)
         {
-            m_UiControler.DisplayGroupsToListBox(listBoxPosts, textBoxPostsSearch.Text);
+            m_UiController.DisplayGroupsToListBox(listBoxPosts, textBoxPostsSearch.Text);
         }
 
         private void textBoxPostsSearch_TextChanged(object sender, EventArgs e)
         {
-            m_UiControler.DisplayPostsToListBox(listBoxPosts, textBoxPostsSearch.Text);
+            m_UiController.DisplayPostsToListBox(listBoxPosts, textBoxPostsSearch.Text);
         }
 
         private void textBoxPhotosTaggenInSearch_TextChanged(object sender, EventArgs e)
         {
-            m_UiControler.DisplayPhotosTaggedInToListBox(listBoxPhotosTaggedIn, textBoxPhotosTaggenInSearch.Text);
+            m_UiController.DisplayPhotosTaggedInToListBox(listBoxPhotosTaggedIn, textBoxPhotosTaggenInSearch.Text);
         }
 
         private void textBoxCheckInSearch_TextChanged(object sender, EventArgs e)
         {
-            m_UiControler.DisplayCheckInToListBox(listBoxCheckIn, textBoxCheckInSearch.Text);
+            m_UiController.DisplayCheckInToListBox(listBoxCheckIn, textBoxCheckInSearch.Text);
         }
 
         private void textBoxLikedPagesSearch_TextChanged(object sender, EventArgs e)
         {
-            m_UiControler.DisplayLikedPagesToListBox(listBoxLikePages, textBoxLikedPagesSearch.Text);
+            m_UiController.DisplayLikedPagesToListBox(listBoxLikePages, textBoxLikedPagesSearch.Text);
         }
 
         private void listBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBoxDataModel<Group> selectedGroups = (ListBoxDataModel<Group>)listBoxGroups.SelectedItem;
-            m_UiControler.DisplayImageInPictureBox(pictureBoxGroups, selectedGroups?.Data?.IconUrl);
+            m_UiController.DisplayImageInPictureBox(pictureBoxGroups, selectedGroups?.Data?.IconUrl);
         }
 
         private void listBoxCheckIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBoxDataModel<Checkin> selectedCheckIn = (ListBoxDataModel<Checkin>)listBoxCheckIn.SelectedItem;
-            m_UiControler.DisplayImageInPictureBox(pictureBoxCheckIn, selectedCheckIn?.Data?.PictureURL);
+            m_UiController.DisplayImageInPictureBox(pictureBoxCheckIn, selectedCheckIn?.Data?.PictureURL);
         }
 
         private void buttonFetchBestFriends_Click(object sender, EventArgs e)
         {
-            m_UiControler.FetchBestFriendsAndDisplayToListBox(listBoxBestFriends);
+            m_UiController.FetchBestFriendsAndDisplayToListBox(listBoxBestFriends);
         }
        
         private void comboBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_UiControler.FetchPhotosPerCategoryAndDisplayToListBox(comboBoxCategories, listBoxItemsOfCategory);
+            m_UiController.FetchPhotosPerCategoryAndDisplayToListBox(comboBoxCategories, listBoxItemsOfCategory);
         }
 
         private void listBoxItemsOfCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_UiControler.SelectItemOfCategoryAndDisplayToPhotoListBox(listBoxItemsOfCategory, listBoxSortedPhotos);
+            m_UiController.SelectItemOfCategoryAndDisplayToPhotoListBox(listBoxItemsOfCategory, listBoxSortedPhotos);
         }
 
         private void listBoxBestFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_UiControler.DisplayBestFriendStatistics(listBoxBestFriends);
+            m_UiController.DisplayBestFriendStatistics(listBoxBestFriends);
         }
 
         private void listBoxSortedPhotos_SelectedIndexChanged(object sender, EventArgs e)
         {
             Photo selectedPhoto = (Photo)listBoxSortedPhotos.SelectedItem;
-            m_UiControler.DisplayImageInPictureBox(pictureBoxCategoryPhoto, selectedPhoto?.PictureNormalURL);
+            m_UiController.DisplayImageInPictureBox(pictureBoxCategoryPhoto, selectedPhoto?.PictureNormalURL);
         }
 
         private void buttonFetchPostsDataBinding_Click(object sender, EventArgs e)
@@ -300,7 +319,21 @@ namespace BasicFacebookFeatures
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_UiControler.FetchSortedPhotosAndDisplayToListBox(comboBoxSortBy, listBoxAlbums, listBoxPictures);
+            m_UiController.FetchSortedPhotosAndDisplayToListBox(comboBoxSortBy, listBoxAlbums, listBoxPictures);
+        }
+
+        private void comboBoxAutoUpdate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxDataModel selectedItem = comboBoxAutoUpdate.SelectedItem as ComboBoxDataModel;
+
+            if (selectedItem.Text == Consts.TurnOffText)
+            {
+                m_AutomaticUpdater.StopTimer();
+            }
+            else
+            {
+                m_AutomaticUpdater.StartTimer(selectedItem.Value);
+            }
         }
     }
 }
