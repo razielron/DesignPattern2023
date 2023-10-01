@@ -100,6 +100,8 @@
     <Compile Include="CountriesPhotoManager.cs" />
     <Compile Include="CreatedDatePhotoManager.cs" />
     <Compile Include="EarliestPhotosComparisonCriterion.cs" />
+    <Compile Include="IListBox.cs" />
+    <Compile Include="IListBoxDecorator.cs" />
     <Compile Include="LatestPhotosComparisonCriterion.cs" />
     <Compile Include="LikedByComparisonCriterion.cs" />
     <Compile Include="FormMain.cs">
@@ -110,10 +112,12 @@
     </Compile>
     <Compile Include="ICategoryPhotoManager.cs" />
     <Compile Include="IComparisonCriterionStrategy.cs" />
+    <Compile Include="ListBox.cs" />
     <Compile Include="ListBoxDataModel.cs" />
     <Compile Include="ListBoxFilterManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchableListBox.cs" />
     <Compile Include="Sorter.cs" />
     <Compile Include="UiControler.cs" />
     <EmbeddedResource Include="FormMain.resx">

@@ -5,11 +5,11 @@ namespace BasicFacebookFeatures
 {
     public class CountriesPhotoManager : ICategoryPhotoManager
     {
-        private List<Photo> m_AllPhotos;
+        private IEnumerable<Photo> m_AllPhotos;
 
         public List<string> Items { get; private set; }
 
-        public CountriesPhotoManager(List<Photo> i_AllPhotos)
+        public CountriesPhotoManager(IEnumerable<Photo> i_AllPhotos)
         {
             m_AllPhotos = i_AllPhotos;
             Items = new List<string>();

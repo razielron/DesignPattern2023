@@ -5,11 +5,11 @@ namespace BasicFacebookFeatures
 {
     public class CreatedDatePhotoManager : ICategoryPhotoManager
     {
-        private List<Photo> m_AllPhotos;
+        private IEnumerable<Photo> m_AllPhotos;
 
         public List<string> Items { get; private set; }
 
-        public CreatedDatePhotoManager(List<Photo> allPhotos)
+        public CreatedDatePhotoManager(IEnumerable<Photo> allPhotos)
         {
             m_AllPhotos = allPhotos;
             Items = new List<string>();

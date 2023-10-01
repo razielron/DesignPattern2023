@@ -5,7 +5,7 @@ namespace BasicFacebookFeatures
 {
     public class CategoryPhotoManagerFactory
     {
-        public static ICategoryPhotoManager CreateCategoryPhotoManager(string i_Category, List<Photo> i_AllPhotos)
+        public static ICategoryPhotoManager CreateCategoryPhotoManager(string i_Category, IEnumerable<Photo> i_AllPhotos)
         {
             string countries = Consts.CategoryCountries.ToLower();
             string createdDate = Consts.CategoryCreatedDate.ToLower();
