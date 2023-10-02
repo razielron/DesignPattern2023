@@ -31,6 +31,7 @@ namespace BasicFacebookFeatures
                 Consts.CategoryCountries,
                 Consts.CategoryCreatedDate
             });
+
             comboBoxSortBy.Items.AddRange(new string[]
             {
                 Consts.SortByLikes,
@@ -38,6 +39,7 @@ namespace BasicFacebookFeatures
                 Consts.SortByLatestPhotos,
                 Consts.SortByEarliestPhotos
             });
+
             comboBoxAutoUpdate.Items.AddRange(new ComboBoxDataModel[]
             {
                 new ComboBoxDataModel { Text = Consts.TurnOffText, Value = 0 },
@@ -317,11 +319,6 @@ namespace BasicFacebookFeatures
             postBindingSource.DataSource = m_TheLoggedInUser.Posts;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            m_UiController.FetchSortedPhotosAndDisplayToListBox(comboBoxSortBy, listBoxAlbums, listBoxPictures);
-        }
-
         private void comboBoxAutoUpdate_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxDataModel selectedItem = comboBoxAutoUpdate.SelectedItem as ComboBoxDataModel;
@@ -334,6 +331,11 @@ namespace BasicFacebookFeatures
             {
                 m_AutomaticUpdater.StartTimer(selectedItem.Value);
             }
+        }
+
+        private void comboBoxcomboBoxSortBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_UiController.FetchSortedPhotosAndDisplayToListBox(comboBoxSortBy, listBoxAlbums, listBoxPictures);
         }
     }
 }

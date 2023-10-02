@@ -1,15 +1,9 @@
 ﻿using FacebookWrapper.ObjectModel;
-using ProxyComponents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures
 {
     public interface IComparisonCriterionStrategy
     {
-        bool shouldLeftBeBefore(Photo item1, Photo item2);
+        bool ShouldLeftBeBefore(Photo i_Item1, Photo i_Item2);
     }
 }

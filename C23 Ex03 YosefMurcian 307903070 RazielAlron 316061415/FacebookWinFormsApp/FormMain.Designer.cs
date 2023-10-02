@@ -556,7 +556,7 @@ namespace BasicFacebookFeatures
             this.comboBoxSortBy.Size = new System.Drawing.Size(159, 26);
             this.comboBoxSortBy.TabIndex = 102;
             this.comboBoxSortBy.Text = "Sort By..";
-            this.comboBoxSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxSortBy.SelectedIndexChanged += new System.EventHandler(this.comboBoxcomboBoxSortBy_SelectedIndexChanged);
             // 
             // buttonFetchAlbums
             // 

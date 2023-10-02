@@ -1,9 +1,5 @@
 ﻿using FacebookWrapper.ObjectModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures
 {
@@ -32,20 +28,20 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void merge(List<Photo> i_Collections, int i_Left, int middle, int i_Right)
+        private void merge(List<Photo> i_Collections, int i_Left, int i_Middle, int i_Right)
         {
-            int firstIndex = middle - i_Left + 1;
-            int lastIndex = i_Right - middle;
+            int firstIndex = i_Middle - i_Left + 1;
+            int lastIndex = i_Right - i_Middle;
 
             List<Photo> leftCollections = i_Collections.GetRange(i_Left, firstIndex);
-            List<Photo> rightCollections = i_Collections.GetRange(middle + 1, lastIndex);
+            List<Photo> rightCollections = i_Collections.GetRange(i_Middle + 1, lastIndex);
 
             int x = 0, y = 0;
             int k = i_Left;
 
             while (x < firstIndex && y < lastIndex)
             {
-                if (ComparisonStrategy.shouldLeftBeBefore(leftCollections[x], rightCollections[y]))
+                if (ComparisonStrategy.ShouldLeftBeBefore(leftCollections[x], rightCollections[y]))
                 {
                     i_Collections[k] = leftCollections[x];
                     x++;

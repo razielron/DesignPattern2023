@@ -1,17 +1,12 @@
 ﻿using FacebookWrapper.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures
 {
     public class CommentsComparisonCriterion : IComparisonCriterionStrategy
     {
-        public bool shouldLeftBeBefore(Photo item1, Photo item2)
+        public bool ShouldLeftBeBefore(Photo i_Item1, Photo i_Item2)
         {
-            return item1.Comments.Count <= item2.Comments.Count;
+            return i_Item1.Comments.Count <= i_Item2.Comments.Count;
         }
     }
 }

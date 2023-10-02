@@ -254,9 +254,9 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public void FetchSortedPhotosAndDisplayToListBox(ComboBox comboBoxSortBy, ListBoxProxy i_SelectedAlbum, ListBox i_ListBoxPictures)
+        public void FetchSortedPhotosAndDisplayToListBox(ComboBox i_ComboBoxSortBy, ListBoxProxy i_SelectedAlbum, ListBox i_ListBoxPictures)
         {
-            string selectedCriterion = comboBoxSortBy.SelectedItem.ToString();
+            string selectedCriterion = i_ComboBoxSortBy.SelectedItem.ToString();
             ListBoxDataModel<Album> selectedAlbum = (ListBoxDataModel<Album>)i_SelectedAlbum.SelectedItem;
 
             switch (selectedCriterion)
@@ -278,23 +278,22 @@ namespace BasicFacebookFeatures
             DisplayAlbumPhotos(selectedAlbum, i_ListBoxPictures, m_PhotoSorter);
         }
 
-        public void DisplayAlbumPhotos(ListBoxDataModel<Album> selectedAlbum, ListBox photosListBox, Sorter strategy)
+        public void DisplayAlbumPhotos(ListBoxDataModel<Album> i_SelectedAlbum, ListBox i_PhotosListBox, Sorter i_Strategy)
         {
-            if (selectedAlbum != null)
+            if (i_SelectedAlbum != null)
             {
-                Album album = selectedAlbum.Data;
+                Album album = i_SelectedAlbum.Data;
                 List<Photo> sortedPhotos = album.Photos.ToList();
 
-                strategy.Sort(sortedPhotos);
-
-                photosListBox.DataSource = sortedPhotos;
+                i_Strategy.Sort(sortedPhotos);
+                i_PhotosListBox.DataSource = sortedPhotos;
             }
         }
 
         public void SelectItemOfCategoryAndDisplayToPhotoListBox(ListBox i_SelectListBox, ListBox i_DisplayListBox)
         {
             string selectedItem = i_SelectListBox.SelectedItem.ToString().ToLower();
-            i_DisplayListBox.DataSource = m_CategoryPhotoManager.GetPhotosByItem(selectedItem);
+            i_DisplayListBox.DataSource = m_CategoryPhotoManager.GetPhotosByItem(selectedItem).ToList();
         }
 
         public void DisplayItemsToCategoryListBox(ListBox i_ListBox)

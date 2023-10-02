@@ -21,6 +21,7 @@ namespace BasicFacebookFeatures
             foreach (Photo photo in m_AllPhotos)
             {
                 string createdDate = photo.CreatedTime?.ToString();
+
                 if (createdDate == i_SelectedItem)
                 {
                     yield return photo;
@@ -33,6 +34,7 @@ namespace BasicFacebookFeatures
             foreach (Photo photo in m_AllPhotos)
             {
                 string createdDate = photo.CreatedTime?.ToString();
+
                 if (!string.IsNullOrEmpty(createdDate) && !Items.Contains(createdDate))
                 {
                     Items.Add(createdDate);
